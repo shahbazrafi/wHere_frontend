@@ -1,0 +1,36 @@
+.App {
+  text-align: center;
+}
+
+header {
+  background-color: #282c34;
+  min-height: 10vh;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.flex {
+  display: flex;
+}
+
+.left-side {
+  text-align: left;
+  margin-left: 20px;
+  width: 50%;
+}
+
+.right-side {
+  text-align: right;
+  margin-right: 20px;
+  width: 50%;
+}
+
+.header-link {
+  color: white;
+}
+
+.img-thumbnail {
+  width: 250px
+}
