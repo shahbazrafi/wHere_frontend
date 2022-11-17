@@ -16,6 +16,9 @@ const Home = ({user}) => {
         "name":"livingroom","description":"Cosy place to relax",
         "contains":[{"$oid":"6374f3680318fa7c71b095ee"},{"$oid":"6374fbb70318fa7c71b095fc"}],"image":{"$oid":"6374cc43fc54dbe7d04914bf"},"parent_id":{"$oid":"6374f23e0318fa7c71b095ed"}}
     ]}, 
+
+
+    
     {"_id":{"$oid":"6374f23e0318fa7c71b095ed"},
     "name":"Home",
     "description":"Holds everything you own",
@@ -54,7 +57,7 @@ const Home = ({user}) => {
                 setView(element.contains);
                 
                 }}>{element.name}</a></p>
-                <img class="img-thumbnail" src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"></img></>)}
+                <img class="img-thumbnail" alt="temp" src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"></img></>)}
             </>
             :
             <p>Please log in to use this app.</p>
