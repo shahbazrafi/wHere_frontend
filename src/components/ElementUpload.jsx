@@ -1,11 +1,10 @@
 import { useState } from "react"
 import { addImage } from "../api"
-const {readFileSync} = require("fs")
-const ElementUpload = () => {
+// const {readFileSync} = require("fs")
+const ElementUpload = ({currentLevel}) => {
 
     const [imageFile, setImageFile] = useState("")
     const [titleInput, setTitle] = useState("")
-    
     const handlePhoto = (e)=>{
         e.preventDefault()
         setImageFile(e.target.files[0])
@@ -44,9 +43,9 @@ const ElementUpload = () => {
     </div>
 </form>
 <p>Preview:</p>
+<p>Parent ID: {currentLevel.name}</p>
 <p>Name: {titleInput}</p>
-<img src={readFileSync({data: imageFile, contentType: "image/png"})}></img>
-
+{imageFile ? <img src={`http://localhost:5000/uploads/${imageFile}`}></img> : null}
 </>
 }
 

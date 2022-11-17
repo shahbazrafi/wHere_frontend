@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
-const Home = ({user}) => {
+const Home = ({user, setCurrentLevel}) => {
     const [elements, setElements] = useState([{"_id":{"$oid":"6374f23e0318fa7c71b095ed"},
     "name":"Home",
     "description":"Holds everything you own",
@@ -14,9 +15,6 @@ const Home = ({user}) => {
         "name":"livingroom","description":"Cosy place to relax",
         "contains":[{"$oid":"6374f3680318fa7c71b095ee"},{"$oid":"6374fbb70318fa7c71b095fc"}],"image":{"$oid":"6374cc43fc54dbe7d04914bf"},"parent_id":{"$oid":"6374f23e0318fa7c71b095ed"}}
     ]}, 
-
-
-    
     {"_id":{"$oid":"6374f23e0318fa7c71b095ed"},
     "name":"Home",
     "description":"Holds everything you own",
@@ -32,10 +30,11 @@ const Home = ({user}) => {
 ])
 
     const [view, setView] = useState(elements)
+    
     // https://images.unsplash.com/photo-1470770841072-f978cf4d019e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80
 
-    const [history, setHistory] = useState([{"name":"All", "contains": elements}])
-
+    const [history, setHistory] = useState([{"name":"All", "_id":{"$oid":"test"}, "contains": elements}])
+    setCurrentLevel(history[history.length-1])
     return (
         <div>
             <ul>
@@ -56,6 +55,7 @@ const Home = ({user}) => {
                 
                 }}>{element.name}</a></p>
                 <img class="img-thumbnail" alt="temp" src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"></img></>)}
+                <Link to="/add" >Add button</Link>
             </>
             :
             <p>Please log in to use this app.</p>
