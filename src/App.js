@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ElementUpload from './components/ElementUpload';
 function App() {
-  const [currentLevel, setCurrentLevel] = useState({"name": "testinapp"})
+  const [currentContainer, setCurrentContainer] = useState({ "name": "All", "contains": [] })
 
   //fetchUsers();
   //fetchImages();
@@ -17,8 +17,8 @@ function App() {
       <div className="App">
         <Header user={user} setUser={setUser} />
         <Routes>
-          <Route path='/' element={<Home user={user} setCurrentLevel={setCurrentLevel} />} />
-          <Route path='/add' element={<ElementUpload user={user} currentLevel={currentLevel} />} />
+          <Route path='/' element={<Home user={user} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} />} />
+          <Route path='/add' element={<ElementUpload user={user} currentContainer={currentContainer} />} />
         </Routes>
       </div>
       
