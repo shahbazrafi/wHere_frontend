@@ -8,7 +8,6 @@ const ImageGallery = () => {
     const [isLoading, setLoading] = useState(true)
 
     useEffect(()=>{
-
         setLoading(true)
         fetchImages().then((imageData)=>{
             setImages(imageData)
@@ -18,8 +17,9 @@ const ImageGallery = () => {
     }, [])
 
     if (isLoading) return <p>Loading.....</p>
-    return <>{images.map((image, key)=>{
-        return <Image key={key} image={image}/>
+    const key = 0
+    return <>{images.map((image, key) => {
+        return <Image key={++key} image={image}/>
     })}</>
 
 }

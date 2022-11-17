@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { addImage } from "../api"
-
-const ImageUpload = ()=>{
+const {readFileSync} = require("fs")
+const ElementUpload = () => {
 
     const [imageFile, setImageFile] = useState("")
     const [titleInput, setTitle] = useState("")
-
+    
     const handlePhoto = (e)=>{
         e.preventDefault()
         setImageFile(e.target.files[0])
@@ -13,17 +13,9 @@ const ImageUpload = ()=>{
     }
 
     const handleSubmit = (e)=>{
-        
         const formData = new FormData();
-
         formData.append('file', imageFile)
         formData.append('name', titleInput)
-
-
-        // for (const pair of formData.entries()) {
-        //     console.log(`${pair[0]}, ${pair[1]}`);
-        //   }
-
         addImage(formData).then(()=>{
             console.log("Successful")
         }).catch((err)=>{
@@ -35,14 +27,13 @@ const ImageUpload = ()=>{
         setTitle(e.target.value)
     }
 
-
-    return <form onSubmit={handleSubmit} encType="multipart/form-data">
+    return <>
+    <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div>
                 <label htmlFor="name">Image Title</label>
                 <input type="text" id="name" placeholder="Name" 
                        value={titleInput} name="name" required onChange={handleChange}/>
             </div>
-  
     <div>
         <label htmlFor="image">Upload Image</label>
         <input type="file" id="image" 
@@ -52,6 +43,11 @@ const ImageUpload = ()=>{
         <input type="submit"/>
     </div>
 </form>
+<p>Preview:</p>
+<p>Name: {titleInput}</p>
+<img src={readFileSync({data: imageFile, contentType: "image/png"})}></img>
+
+</>
 }
 
-export default ImageUpload
+export default ElementUpload

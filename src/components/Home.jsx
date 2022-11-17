@@ -1,5 +1,3 @@
-import ImageGallery from './ImageGallery';
-import ImageUpload from './ImageUpload';
 import { useState } from 'react';
 
 

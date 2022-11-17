@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ImageUpload from './components/ImageUpload';
+import ElementUpload from './components/ElementUpload';
 function App() {
   const [currentLevel, setCurrentLevel] = useState()
 
@@ -18,7 +18,7 @@ function App() {
         <Header user={user} setUser={setUser} />
         <Routes>
           <Route path='/' element={<Home user={user} setCurrentLevel={setCurrentLevel} />} />
-          <Route path='/add' element={<><Home user={user} /><ImageUpload user={user} currentLevel={currentLevel} /></>} />
+          <Route path='/add' element={<><Home user={user} /><ElementUpload user={user} currentLevel={currentLevel} /></>} />
         </Routes>
       </div>
       
