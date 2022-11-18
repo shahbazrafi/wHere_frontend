@@ -8,7 +8,7 @@ const Card = ({name, image, description, _id, setHistory, setId, setCurrentConta
         }
     }}>
                 
-        <p className="card-name">{name}</p>
+      <p className="card-name">{name}</p>
         <img className="card-image" alt="temp" src={`data:image/png;base64,${image}`}></img>
         <p className="card-desc">{description}</p>
         <br></br><button onClick={()=> {
