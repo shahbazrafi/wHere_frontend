@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as api from '../api.js'
+import {BsPlusSquareFill} from 'react-icons/bs'
 
 
 const Home = ({ user, setCurrentContainer, currentContainer }) => {
@@ -8,7 +9,8 @@ const Home = ({ user, setCurrentContainer, currentContainer }) => {
     const [history, setHistory] = useState([])
 
     useEffect(() => {
-        api.fetchContainer(id).then(data => {
+        if (id === null) {}
+        else api.fetchContainer(id).then(data => {
             console.log(data, '<<<data in home')
             setCurrentContainer(data)
         })
@@ -19,7 +21,8 @@ const Home = ({ user, setCurrentContainer, currentContainer }) => {
             <ul>
                 {history.map((x, index, self) => <a href="" onClick={(e) => {
                     e.preventDefault();
-                    setId(x)
+                    setId(null)
+                    setCurrentContainer(x)
                     setHistory((previousHistory) => previousHistory.slice(0, index))
                 }}><li key={x.index}>{x.name}</li></a>)}
             </ul>
@@ -38,7 +41,7 @@ const Home = ({ user, setCurrentContainer, currentContainer }) => {
             <br></br><button onClick={()=> {if(window.confirm(`Are you sure you want to delete ${element.name}?`)) {let newId = {...id};newId.contains.splice(index,1);setId(newId);alert(`${element.name} has been deleted.`)}}}>Delete {element.name}</button>
             </div>)
             }
-            <Link to="/add"><p>Add button</p></Link>
+                    <Link to="/add"><BsPlusSquareFill /></Link>
             </>
             :
             <p>Please log in to use this app.</p>
@@ -46,5 +49,4 @@ const Home = ({ user, setCurrentContainer, currentContainer }) => {
         </div>
     )
 };
-
 export default Home;

@@ -5,7 +5,7 @@ const Header = ({user, setUser}) => {
         <header>
         <div className = "flex">
         <div className = "left-side">
-            <p className = "header-link"><Link to="/">wHere?</Link></p>
+            <a href="" className = "header-link"><p>wHere?</p></a>
         </div>
         <div className = "right-side">
             {user.name ? 
