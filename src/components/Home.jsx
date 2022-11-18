@@ -9,8 +9,7 @@ const Home = ({ user, setCurrentContainer, currentContainer }) => {
     const [history, setHistory] = useState([])
 
     useEffect(() => {
-        if (id === null) {}
-        else api.fetchContainer(id).then(data => {
+        api.fetchContainer(id).then(data => {
             console.log(data, '<<<data in home')
             setCurrentContainer(data)
         })
@@ -21,8 +20,7 @@ const Home = ({ user, setCurrentContainer, currentContainer }) => {
             <ul>
                 {history.map((x, index, self) => <a href="" onClick={(e) => {
                     e.preventDefault();
-                    setId(null)
-                    setCurrentContainer(x)
+                    setId(x._id)
                     setHistory((previousHistory) => previousHistory.slice(0, index))
                 }}><li key={x.index}>{x.name}</li></a>)}
             </ul>
