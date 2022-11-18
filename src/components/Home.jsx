@@ -33,14 +33,16 @@ const Home = ({ user, setCurrentContainer, currentContainer }) => {
             {user.name ? 
             <>
             <h1>{currentContainer.name}</h1>
+                <div className='card-field'>
                     {currentContainer.contains.map((element, index) => {
                         console.log(currentContainer.length)
                         let { name, image, description, _id, contains} = element;
                         return <Card  name={name} image={image} description={description} _id={_id} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} contains={contains} currentContainer={currentContainer} index={index}/>
                     }
                 )}
+                </div>
         
-                <Link to="/add"><BsPlusSquareFill /></Link>
+                <Link to="/add" ><BsPlusSquareFill className="addIcon" /></Link>
             </>
             :
             <p>Please log in to use this app.</p>
