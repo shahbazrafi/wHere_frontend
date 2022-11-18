@@ -4,8 +4,6 @@ const myApi = axios.create({
     baseURL: 'http://localhost:5000',
   });
 
-
-
   export const fetchUsers = () => {
     return myApi.get(`/users`).then(({data}) => {  
       console.log(data)
