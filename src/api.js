@@ -1,17 +1,24 @@
 import axios from 'axios'
 
-const myApi = axios.create({
-    baseURL: 'http://localhost:5000',
-  });
+const api = axios.create({
+    baseURL: 'https://good-blue-newt-tam.cyclic.app/api/',
+});
+  
+export const fetchContainer = (container_id) => {
+  return api.get(`containers/${container_id}`).then(({data}) => {
+    console.log(data, '<<< in api call')
+      return data
+    })
+  }
 
   export const fetchUsers = () => {
-    return myApi.get(`/users`).then(({data}) => {  
+    return api.get(`users`).then(({data}) => {  
       console.log(data)
     })
   };
 
   export const fetchImages = () => {
-    return myApi.get(`/images`).then(({data} ) => {
+    return api.get(`images`).then(({data} ) => {
 
       console.log(data)
 
@@ -31,7 +38,7 @@ const myApi = axios.create({
     //   console.log(`${pair[0]}, ${pair[1]}`);
     // }
 
-    return myApi.post('/image', formData,   {
+    return api.post('/image', formData,   {
       headers: {
           'enctype': 'multipart/form-data'
       }}).then(()=>{
