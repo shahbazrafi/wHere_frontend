@@ -22,8 +22,8 @@ const Home = ({ user, setCurrentContainer, currentContainer }) => {
 
     return (
         <div>
-            <ul>
-                {history.map((x, index, self) => <a href="" onClick={(e) => {
+            <ul className="history-list">
+                {history.map((x, index, self) => <a className="history-item" href="" onClick={(e) => {
                     e.preventDefault();
                     setId(x._id)
                     setHistory((previousHistory) => previousHistory.slice(0, index))
