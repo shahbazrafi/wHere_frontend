@@ -7,13 +7,18 @@ import Card from './Card.jsx';
 const Home = ({ user, setCurrentContainer, currentContainer }) => {
     const [id, setId] = useState('6374f23e0318fa7c71b095ed')
     const [history, setHistory] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
+        setIsLoading(true)
         api.fetchContainer(id).then(data => {
             console.log(data, '<<<data in home')
             setCurrentContainer(data)
+            setIsLoading(false)
         })
     }, [id])
+
+    if (isLoading) return <p>Loading</p>
 
     return (
         <div>
@@ -29,8 +34,9 @@ const Home = ({ user, setCurrentContainer, currentContainer }) => {
             <>
             <h1>{currentContainer.name}</h1>
                     {currentContainer.contains.map((element, index) => {
+                        console.log(currentContainer.length)
                         let { name, image, description, _id, contains} = element;
-                        <Card  name={name} image={image} description={description} _id={_id} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} contains={contains} currentContainer={currentContainer} index={index}/>
+                        return <Card  name={name} image={image} description={description} _id={_id} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} contains={contains} currentContainer={currentContainer} index={index}/>
                     }
                 )}
         
