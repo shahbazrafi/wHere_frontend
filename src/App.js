@@ -1,5 +1,4 @@
 import './App.css';
-import './image.css';
 import Header from './components/Header';
 import Home from './components/Home';
 import { useState } from 'react';

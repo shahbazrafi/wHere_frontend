@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as api from '../api.js'
 import {BsPlusSquareFill} from 'react-icons/bs'
-
+import Card from './Card.jsx';
 
 const Home = ({ user, setCurrentContainer, currentContainer }) => {
     const [id, setId] = useState('6374f23e0318fa7c71b095ed')
@@ -28,18 +28,13 @@ const Home = ({ user, setCurrentContainer, currentContainer }) => {
             {user.name ? 
             <>
             <h1>{currentContainer.name}</h1>
-            {currentContainer.contains.map((element, index) => <div key={element.name}>
-                {element.hasOwnProperty('contains') ?
-                    <a href="" onClick={(e) => {
-                    e.preventDefault();
-                    setHistory((previousHistory) => [...previousHistory, currentContainer])
-                    setId(element._id)
-                }}><p>{element.name}</p></a>: <p>{element.name}</p>}
-            <img class="img-thumbnail" alt="temp" src={`data:image/png;base64,${element.image}`}></img>
-            <br></br><button onClick={()=> {if(window.confirm(`Are you sure you want to delete ${element.name}?`)) {let newId = {...id};newId.contains.splice(index,1);setId(newId);alert(`${element.name} has been deleted.`)}}}>Delete {element.name}</button>
-            </div>)
-            }
-                    <Link to="/add"><BsPlusSquareFill /></Link>
+                    {currentContainer.contains.map((element, index) => {
+                        let { name, image, description, _id, contains} = element;
+                        <Card  name={name} image={image} description={description} _id={_id} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} contains={contains} currentContainer={currentContainer} index={index}/>
+                    }
+                )}
+        
+                <Link to="/add"><BsPlusSquareFill /></Link>
             </>
             :
             <p>Please log in to use this app.</p>
