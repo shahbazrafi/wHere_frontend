@@ -1,9 +1,11 @@
+import { Link } from 'react-router-dom';
+
 const Header = ({user, setUser}) => {
     return (
         <header>
         <div class = "flex">
         <div class = "left-side">
-            <p><a class = "header-link" href="/">wHere?</a></p>
+            <p class = "header-link"><Link to="/">wHere?</Link></p>
         </div>
         <div class = "right-side">
             {user.name ? 
