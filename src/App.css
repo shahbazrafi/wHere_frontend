@@ -3,17 +3,29 @@
   margin: 0;
   padding: 0;
 }
+/* Hide scrollbar for Chrome, Safari and Opera */
+:root::-webkit-scrollbar {
+  display: none;
+}
 
 :root {
   box-sizing: border-box;
   --text-background: rgba(0, 0, 0, 0.5);
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .App {
   text-align: center;
+  
 }
 
+
+
 header {
+  position: sticky;
+  top:0;
+  z-index: 100;
   display: grid;
   grid-template-columns: 10px 2fr 5fr 10px;
   width: 100%;
@@ -78,21 +90,29 @@ body {
   height: 15%;
 }
 
+.addIcon-cont {
+  position: sticky;
+  bottom: 0;
+  text-align: right;
+}
+
 .addIcon {
   height: 2em;
   width: 2em;
+  padding-right:5px;
 }
 
 .deleteIcon {
   height: 1.2em;
   width: 1.2em;
+  padding:10px;
 }
 
 .deleteButton {
   color: white;
   position: absolute;
-  bottom: 11%;
-  right: 1%;
+  bottom: 10px;
+  right: 0;
   z-index:10;
 }
 .card-image {
@@ -103,6 +123,10 @@ body {
 }
 
 .history-list {
+  position: sticky;
+  top:8vh;
+  z-index: 100;
+  background-color: white;
   list-style-type: none;
   margin: 0;
   margin-top: 8px;
