@@ -1,13 +1,25 @@
 import { useEffect, useState } from "react"
+import { Link, useParams } from "react-router-dom"
+import * as api from "../api"
 import { addImage } from "../api"
-import { Link } from 'react-router-dom';
 
-const ElementUpload = ({currentContainer}) => {
-
+const Edit = () => {
+    const {id} = useParams()
+    const [isLoading, setIsLoading] = useState(true)
     const [imageFile, setImageFile] = useState("")
+    const [getImageFile, setGetImageFile] = useState("")
     const [titleInput, setTitle] = useState("")
     const [descInput, setDesc] = useState("")
-    const [typeInput, setType] = useState("Container")
+
+    useEffect(() => {
+        setIsLoading(true)
+        api.fetchContainer(id).then(data => {
+            setTitle(data.name)
+            setDesc(data.description)
+            setGetImageFile(data.image)
+            setIsLoading(false)
+        })
+    }, [id])
 
     const handlePhoto = (e)=>{
         e.preventDefault()
@@ -16,7 +28,6 @@ const ElementUpload = ({currentContainer}) => {
         let preview = document.getElementById("preview-image")
         preview.src = src
     }
-    useEffect(() => {} , [imageFile])
 
     const handleSubmit = (e)=>{
         e.preventDefault()
@@ -30,40 +41,37 @@ const ElementUpload = ({currentContainer}) => {
         })
     }
 
+    if (isLoading) return <p>Loading</p>
+
     return <>
     <Link to="/" ><p>Back</p></Link>
-    <h1>Add {typeInput}</h1>
     <form onSubmit={handleSubmit} encType="multipart/form-data">
     <div>
-        <label htmlFor="type">Type</label>
-        <select id="type" name="type" required onChange={(e) => {setType(e.target.value)}}>
-            <option value="Container">Container</option>
-            <option value="Item">Item</option>
-        </select>
-    </div>
-    <div>
-        <label htmlFor="name">{typeInput} title</label>
+        <label htmlFor="name">Edit title</label>
         <input type="text" id="name" placeholder="Name" value={titleInput} name="name" required onChange={(e) => {setTitle(e.target.value)}}/>
     </div>
     <div>
-        <label htmlFor="desc">{typeInput} description</label>
+        <label htmlFor="desc">Edit description</label>
         <input type="text" id="desc" placeholder="Description" value={descInput} name="desc" required onChange={(e) => {setDesc(e.target.value)}}/>
     </div>
     <div>
-        <label htmlFor="image">Upload Image</label>
+        <label htmlFor="image">Change Image</label>
         <input type="file" id="image" name="image" useref={imageFile} onChange={handlePhoto}/>
     </div>
     <div>
         <input type="submit"/>
     </div>
     </form>
-<p><strong>{typeInput} Preview:</strong></p>
-<p>Parent ID Name: {currentContainer.name}</p>
-<p>Name: {titleInput}</p>
-<p>Description: {descInput}</p>
-<p>Image:</p>
-<img id="preview-image"></img>
-</>
+
+    <p><strong>Preview:</strong></p>
+    <p>Parent ID: {id}</p>
+    <p>Name: {titleInput}</p>
+    <p>Description: {descInput}</p>
+    <p>Image:</p>
+    {imageFile ? null : <img src={`data:image/png;base64,${getImageFile}`}></img>}
+    <img id="preview-image"></img>
+    
+    </>
 }
 
-export default ElementUpload
+export default Edit

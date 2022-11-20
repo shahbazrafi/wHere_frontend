@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ElementUpload from './components/ElementUpload';
 import Search from './components/Search'
 import SearchSection from './components/SearchSection';
+import Edit from './components/Edit';
+
 function App() {
   const [currentContainer, setCurrentContainer] = useState({ "name": "All", "contains": [] })
   const [id, setId] = useState('6374f23e0318fa7c71b095ed')
@@ -20,6 +22,7 @@ function App() {
           <Route path='/' element={<><SearchSection search={search} setSearch={setSearch}/><Home user={user} currentContainer={currentContainer} setCurrentContainer={setCurrentContainer} id={id} setId={setId} history={history} setHistory={setHistory}/></>} />
           <Route path='/add' element={<ElementUpload user={user} currentContainer={currentContainer}/>} />
           <Route path='/search/:search_query' element={<Search />}></Route>
+          <Route path='/edit/:id' element={<Edit />}></Route>
         </Routes>
       </div>
       
