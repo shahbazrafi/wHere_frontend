@@ -38,7 +38,7 @@ const Edit = () => {
         formData.append('description', descInput)
         // api.insertapifunction(formData).then(()=>{
         //     console.log("Successful")
-        //     navigate(`/`)
+            navigate(-1)
         // }).catch((err)=>{
         //     console.log("Something went wrong", err)
         // })
@@ -55,7 +55,7 @@ const Edit = () => {
     </div>
     <div>
         <label htmlFor="desc">Edit description</label>
-        <input type="text" id="desc" placeholder="Description" value={descInput} name="desc" required onChange={(e) => {setDesc(e.target.value)}}/>
+        <input type="text" id="desc" placeholder="Description" value={descInput} name="desc" onChange={(e) => {setDesc(e.target.value)}}/>
     </div>
     <div>
         <label htmlFor="image">Change Image</label>
