@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link, useParams, useNavigate } from "react-router-dom"
 import * as api from "../api"
-import { addImage } from "../api"
 
 const Edit = () => {
     const navigate = useNavigate();
@@ -72,8 +71,8 @@ const Edit = () => {
     <p>Name: {titleInput}</p>
     <p>Description: {descInput}</p>
     <p>Image:</p>
-    {imageFile ? null : <img className="preview-image" src={`data:image/png;base64,${getImageFile}`}></img>}
-    <img className="preview-image" id="preview-image"></img>
+    {imageFile ? null : <img alt="" className="preview-image" src={`data:image/png;base64,${getImageFile}`}></img>}
+    <img alt="" className="preview-image" id="preview-image"></img>
     
     </>
 }
