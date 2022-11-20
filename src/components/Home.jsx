@@ -35,8 +35,8 @@ const Home = ({ user, currentContainer, setCurrentContainer, id, setId, history,
         <div className='card-field'>
             {currentContainer.contains.map((element, index) => {
                 console.log(currentContainer.length)
-                let { name, image, description, _id, contains} = element;
-                return <Card  name={name} image={image} description={description} _id={_id} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} contains={contains} currentContainer={currentContainer} index={index}/>
+                let { name, image, description, _id, contains, parent_id} = element;
+                return <Card  name={name} image={image} description={description} _id={_id} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} contains={contains} currentContainer={currentContainer} index={index} parent_id={parent_id}/>
             }
         )}
         </div>

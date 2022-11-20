@@ -1,9 +1,9 @@
 import { MdDeleteForever } from 'react-icons/md'
 import { AiFillEdit } from 'react-icons/ai'
 import { useNavigate } from "react-router-dom";
+import * as api from "../api"
 
-
-const Card = ({name, image, description, _id, setHistory, setId, setCurrentContainer, contains, currentContainer, index}) => {
+const Card = ({name, image, description, _id, setHistory, setId, setCurrentContainer, contains, currentContainer, index, parent_id}) => {
     const navigate = useNavigate();
 
     return <div className="card-cont">
@@ -22,10 +22,14 @@ const Card = ({name, image, description, _id, setHistory, setId, setCurrentConta
         <br></br>
         <div className='deleteButton'><MdDeleteForever className="deleteIcon" onClick={()=> {
             if(window.confirm(`Are you sure you want to delete ${name}?`)) {
-                let newCurrentContainer = {...currentContainer};
-                newCurrentContainer.contains.splice(index,1);
-                setCurrentContainer(newCurrentContainer);
-                alert(`${name} has been deleted.`)}
+                api.deleteItem(parent_id, _id).then(() => {
+                    let newCurrentContainer = {...currentContainer};
+                    newCurrentContainer.contains.splice(index,1);
+                    setCurrentContainer(newCurrentContainer);
+                    alert(`${name} has been deleted.`)
+                })
+                
+            }
             }}/></div>
         <div className='editButton'><AiFillEdit className="editIcon" onClick={()=> {
             navigate(`/edit/${_id}`)

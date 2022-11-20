@@ -46,6 +46,30 @@ export const fetchContainer = (container_id) => {
     })
   }
 
+  export const addContainer = (formData, parent_id) => {
+    return api.post(`/containers/addcontainer/${parent_id}`, formData, {
+      headers: {
+        'enctype': 'multipart/form-data',
+        'Content-Type': 'multipart/form-data'
+    }})
+  }
+
+  export const addItem = (formData, parent_id) => {
+    return api.post(`/items/additem/${parent_id}`, formData, {
+      headers: {
+        'enctype': 'multipart/form-data',
+        'Content-Type': 'multipart/form-data'
+    }})
+  }
+
+  export const deleteItem = (id, parent_id) => {
+    return api.delete(`/item`, {"parent_id": parent_id, "item_id": id}, {
+      headers: {
+        'enctype': 'multipart/form-data',
+        'Content-Type': 'multipart/form-data'
+    }})
+  }
+
 
 
 

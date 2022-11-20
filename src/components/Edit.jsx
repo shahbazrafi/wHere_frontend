@@ -34,11 +34,11 @@ const Edit = () => {
         const formData = new FormData();
         formData.append('file', imageFile)
         formData.append('name', titleInput)
-        addImage(formData).then(()=>{
-            console.log("Successful")
-        }).catch((err)=>{
-            console.log("Something went wrong", err)
-        })
+    //     insertapifunction(formData).then(()=>{
+    //         console.log("Successful")
+    //     }).catch((err)=>{
+    //         console.log("Something went wrong", err)
+    //     })
     }
 
     if (isLoading) return <p>Loading</p>
@@ -68,8 +68,8 @@ const Edit = () => {
     <p>Name: {titleInput}</p>
     <p>Description: {descInput}</p>
     <p>Image:</p>
-    {imageFile ? null : <img src={`data:image/png;base64,${getImageFile}`}></img>}
-    <img id="preview-image"></img>
+    {imageFile ? null : <img className="preview-image" src={`data:image/png;base64,${getImageFile}`}></img>}
+    <img className="preview-image" id="preview-image"></img>
     
     </>
 }

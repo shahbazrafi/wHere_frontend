@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
-import { addImage } from "../api"
-import { Link } from 'react-router-dom';
+import * as api from "../api"
+import { Link, useNavigate } from 'react-router-dom';
 
 const ElementUpload = ({currentContainer}) => {
+    const navigate = useNavigate();
 
     const [imageFile, setImageFile] = useState("")
     const [titleInput, setTitle] = useState("")
@@ -23,11 +24,22 @@ const ElementUpload = ({currentContainer}) => {
         const formData = new FormData();
         formData.append('file', imageFile)
         formData.append('name', titleInput)
-        addImage(formData).then(()=>{
-            console.log("Successful")
-        }).catch((err)=>{
-            console.log("Something went wrong", err)
-        })
+        formData.append('description', descInput)
+        if (typeInput==="Container") {
+            api.addContainer(formData, currentContainer._id).then(()=>{
+                console.log("Successful")
+                navigate(`/`)
+            }).catch((err)=>{
+                console.log("Something went wrong", err)
+            })
+        } else if (typeInput==="Item") {
+            api.addItem(formData, currentContainer._id).then(()=>{
+                console.log("Successful")
+                navigate(`/`)
+            }).catch((err)=>{
+                console.log("Something went wrong", err)
+            })
+        }
     }
 
     return <>
@@ -62,7 +74,7 @@ const ElementUpload = ({currentContainer}) => {
 <p>Name: {titleInput}</p>
 <p>Description: {descInput}</p>
 <p>Image:</p>
-<img id="preview-image"></img>
+<img className="preview-image" id="preview-image"></img>
 </>
 }
 
