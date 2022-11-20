@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useNavigate } from "react-router-dom"
 import * as api from "../api"
 import { addImage } from "../api"
 
 const Edit = () => {
+    const navigate = useNavigate();
+
     const {id} = useParams()
     const [isLoading, setIsLoading] = useState(true)
     const [imageFile, setImageFile] = useState("")
@@ -32,13 +34,15 @@ const Edit = () => {
     const handleSubmit = (e)=>{
         e.preventDefault()
         const formData = new FormData();
-        formData.append('file', imageFile)
+        if (imageFile) formData.append('file', imageFile)
         formData.append('name', titleInput)
-    //     insertapifunction(formData).then(()=>{
-    //         console.log("Successful")
-    //     }).catch((err)=>{
-    //         console.log("Something went wrong", err)
-    //     })
+        formData.append('description', descInput)
+        // api.insertapifunction(formData).then(()=>{
+        //     console.log("Successful")
+        //     navigate(`/`)
+        // }).catch((err)=>{
+        //     console.log("Something went wrong", err)
+        // })
     }
 
     if (isLoading) return <p>Loading</p>
