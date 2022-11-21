@@ -17,7 +17,6 @@ const ElementUpload = ({currentContainer, addEvent}) => {
         let preview = document.getElementById("preview-image")
         preview.src = src
     }
-    useEffect(() => {} , [imageFile])   //Is this doing anything, can this be deleted?
 
     const handleSubmit = (e)=>{
         e.preventDefault()
