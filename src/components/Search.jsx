@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
 import Card from './Card.jsx';
 
-const Search = ({}) => {
+const Search = ({addEvent, setHistory, setId, setCurrentContainer, currentContainer}) => {
     const {search_query} = useParams()
     const [searchResult, setSearchResult] = useState()
     const [isLoading, setIsLoading] = useState(true)
@@ -73,9 +73,7 @@ const Search = ({}) => {
 
     <div className='card-field'>
         {searchResult.map((element, index) => {
-            console.log(searchResult.length)
-            let { name, image, description, _id, parent_id} = element;
-            return <Card name={name} image={image} description={description} _id={_id} index={index} parent_id={parent_id}/>
+            return <Card element={element} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} index={index}/>
         })}
     </div>
     </>

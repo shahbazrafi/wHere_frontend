@@ -5,7 +5,7 @@ import * as api from '../api.js'
 import {BsPlusSquareFill} from 'react-icons/bs'
 import Card from './Card.jsx';
 
-const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHistory }) => {
+const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHistory, addEvent }) => {
     
     const [isLoading, setIsLoading] = useState(true),
         {user, setUser} = useContext(UserContext)
@@ -36,8 +36,7 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
         <div className='card-field'>
             {currentContainer.contains.map((element, index) => {
                 console.log(currentContainer.length)
-                let { name, image, description, _id, contains, parent_id} = element;
-                return <Card  name={name} image={image} description={description} _id={_id} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} contains={contains} currentContainer={currentContainer} index={index} parent_id={parent_id}/>
+                return <Card element={element} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} index={index}/>
             }
             
         )}

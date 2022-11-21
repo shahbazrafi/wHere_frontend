@@ -3,8 +3,9 @@ import { AiFillEdit } from 'react-icons/ai'
 import { useNavigate } from "react-router-dom";
 import * as api from "../api"
 
-const Card = ({name, image, description, _id, setHistory, setId, setCurrentContainer, contains, currentContainer, index, parent_id}) => {
-    const navigate = useNavigate();
+const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, currentContainer, index}) => {
+    const navigate = useNavigate(),
+    {contains, name, parent_id, _id, image, description } = element
 
     return <div className="card-cont">
     <div className="card" key={name} onClick={(e) => {
@@ -38,6 +39,7 @@ const Card = ({name, image, description, _id, setHistory, setId, setCurrentConta
                     api.fetchContainer(parent_id).then((data) => {
                         setCurrentContainer(data)
                         alert(`${name} has been deleted.`);
+                        
                     })
                 })
             }

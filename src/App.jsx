@@ -44,9 +44,9 @@ function App() {
         <Header />
         {user.name ?
         <Routes>
-          <Route path='/' element={<> <Noticeboard events={events} setEvents={setEvents} /><SearchSection search={search} setSearch={setSearch}/><Home  currentContainer={currentContainer} setCurrentContainer={setCurrentContainer} id={id} setId={setId} history={history} setHistory={setHistory} /></>} />
+          <Route path='/' element={<> <Noticeboard events={events} setEvents={setEvents} /><SearchSection search={search} setSearch={setSearch}/><Home  currentContainer={currentContainer} setCurrentContainer={setCurrentContainer} id={id} setId={setId} history={history} setHistory={setHistory} addEvent={addEvent} /></>} />
           <Route path='/add' element={<ElementUpload addEvent={addEvent}  currentContainer={currentContainer}/>} />
-          <Route path='/search/:search_query' element={<Search />}></Route>
+          <Route path='/search/:search_query' element={<Search addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} />}></Route>
           <Route path='/edit/:id' element={<Edit currentContainer={currentContainer} addEvent={addEvent} />}></Route>
         </Routes>
         : <Login usersArray={usersArray} setUsersArray={setUsersArray} addEvent={addEvent} />}

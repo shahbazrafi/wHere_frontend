@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import { useState } from 'react'
 import { MdOutlineExpandMore, MdOutlineExpandLess } from 'react-icons/md'
 import Event from './Event'
 const dayjs = require('dayjs'),
