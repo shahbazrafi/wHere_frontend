@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import * as api from "../api"
 
-const Login = ({setUser}) => {
-    const [usersArray, setUsersArray] = useState([])
+const Login = ({setUser, usersArray, setUsersArray}) => {
+    
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         api.fetchUsers().then((data) => {
