@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react"
+import { useState, useContext } from "react"
+import { UserContext } from "../contexts";
 import * as api from "../api"
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -9,15 +10,15 @@ const ElementUpload = ({currentContainer, addEvent}) => {
     const [titleInput, setTitle] = useState("")
     const [descInput, setDesc] = useState("")
     const [typeInput, setType] = useState("Container")
+    const {user} = useContext(UserContext)
 
-    const handlePhoto = (e)=>{
+    const handlePhoto = (e) => {
         e.preventDefault()
         setImageFile(e.target.files[0])
         let src = URL.createObjectURL(e.target.files[0]);
         let preview = document.getElementById("preview-image")
         preview.src = src
     }
-    useEffect(() => {} , [imageFile])   //Is this doing anything, can this be deleted?
 
     const handleSubmit = (e)=>{
         e.preventDefault()
@@ -27,7 +28,7 @@ const ElementUpload = ({currentContainer, addEvent}) => {
         formData.append('description', descInput)
         if (typeInput==="Container") {
             api.addContainer(formData, currentContainer._id).then(() => {
-                addEvent('place-holder-user', new Date(), currentContainer.name, 'added an container', titleInput)
+                addEvent(user.name, new Date(), currentContainer.name, 'added an container', titleInput)
                 console.log("Successful")
                 navigate(`/`)
             }).catch((err)=>{
@@ -35,7 +36,7 @@ const ElementUpload = ({currentContainer, addEvent}) => {
             })
         } else if (typeInput==="Item") {
             api.addItem(formData, currentContainer._id).then(() => {
-                addEvent('place-holder-user', new Date(), currentContainer.name, 'added an container', titleInput)
+                addEvent(user.name, new Date(), currentContainer.name, 'added an container', titleInput)
                 console.log("Successful")
                 navigate(`/`)
             }).catch((err)=>{
@@ -76,7 +77,7 @@ const ElementUpload = ({currentContainer, addEvent}) => {
 <p>Name: {titleInput}</p>
 <p>Description: {descInput}</p>
 <p>Image:</p>
-<img className="preview-image" id="preview-image"></img>
+<img className="preview-image" id="preview-image" alt="titleInput"></img>
 </>
 }
 

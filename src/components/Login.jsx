@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
+import { UserContext } from "../contexts"
 import * as api from "../api"
 
-const Login = ({setUser, usersArray, setUsersArray, addEvent}) => {
+const Login = ({ usersArray, setUsersArray, addEvent }) => {
     
-    const [loading, setLoading] = useState(true)
+    const { setUser } = useContext(UserContext),
+        [loading, setLoading] = useState(true)
+    
     useEffect(() => {
         api.fetchUsers().then((data) => {
             setLoading(true)
@@ -16,7 +19,7 @@ const Login = ({setUser, usersArray, setUsersArray, addEvent}) => {
     if (loading) return <><p>Please login to a user:</p><p>Loading...</p></>
     
     return <><p>Please login to a user:</p>
-    {usersArray.map(user => <p><a href="" onClick={(e) => {
+    {usersArray.map(user => <p key={user.name}><a href="" onClick={(e) => {
         e.preventDefault()
         setUser(user)
         addEvent(user.name, new Date(), 'the app', 'logged', ' in')

@@ -9,11 +9,9 @@ const Noticeboard = ({ events, setEvents }) => {
     const [isExpanded, setIsExpanded] = useState(false),
         toggleExpand = () => {
             setIsExpanded(state => !state)
-            console.log(isExpanded)
         }
-
     let key = 0;
-    return <div className="noticeboard">
+    return <div className="noticeboard" onMouseEnter={toggleExpand} onMouseLeave={toggleExpand}>
         {!isExpanded ? <li className="event-item"><Event event={events[events.length-1]} /></li>: <></>}
         {isExpanded && <ul className="event-list">
             {events.map(event => {

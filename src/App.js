@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { UserContext } from './contexts';
 import ElementUpload from './components/ElementUpload';
 import Search from './components/Search'
 import SearchSection from './components/SearchSection';
@@ -37,20 +38,21 @@ function App() {
     addEvent = (user, time, location, type, subject) => setEvents(currEvents => [...currEvents, {user, time, location, type, subject}]) 
 
   return (
+    <UserContext.Provider value={{user, setUser}} >
     <BrowserRouter>
       <div className="App">
-        <Header user={user} setUser={setUser} />
+        <Header />
         {user.name ?
         <Routes>
-          <Route path='/' element={<> <Noticeboard events={events} setEvents={setEvents} /><SearchSection search={search} setSearch={setSearch}/><Home user={user} currentContainer={currentContainer} setCurrentContainer={setCurrentContainer} id={id} setId={setId} history={history} setHistory={setHistory} /></>} />
-          <Route path='/add' element={<ElementUpload addEvent={addEvent} user={user} currentContainer={currentContainer}/>} />
+          <Route path='/' element={<> <Noticeboard events={events} setEvents={setEvents} /><SearchSection search={search} setSearch={setSearch}/><Home  currentContainer={currentContainer} setCurrentContainer={setCurrentContainer} id={id} setId={setId} history={history} setHistory={setHistory} /></>} />
+          <Route path='/add' element={<ElementUpload addEvent={addEvent}  currentContainer={currentContainer}/>} />
           <Route path='/search/:search_query' element={<Search />}></Route>
-          <Route path='/edit/:id' element={<Edit />}></Route>
+          <Route path='/edit/:id' element={<Edit currentContainer={currentContainer} addEvent={addEvent} />}></Route>
         </Routes>
-        : <Login setUser={setUser} usersArray={usersArray} setUsersArray={setUsersArray} addEvent={addEvent} />}
+        : <Login usersArray={usersArray} setUsersArray={setUsersArray} addEvent={addEvent} />}
       </div>
-      
-    </BrowserRouter>
+      </BrowserRouter>
+    </UserContext.Provider>
   );
 }
 

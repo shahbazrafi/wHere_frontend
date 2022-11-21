@@ -1,6 +1,10 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../contexts';
 
-const Header = ({user, setUser}) => {
+const Header = () => {
+    const {user, setUser} = useContext(UserContext)
+
     return (
         <header>
         <div className='logo'>

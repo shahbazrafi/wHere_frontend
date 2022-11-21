@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { UserContext } from '../contexts.jsx';
 import { Link } from 'react-router-dom';
 import * as api from '../api.js'
 import {BsPlusSquareFill} from 'react-icons/bs'
 import Card from './Card.jsx';
 
-const Home = ({ user, currentContainer, setCurrentContainer, id, setId, history, setHistory }) => {
+const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHistory }) => {
     
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true),
+        {user, setUser} = useContext(UserContext)
 
     useEffect(() => {
         setIsLoading(true)
@@ -22,7 +24,7 @@ const Home = ({ user, currentContainer, setCurrentContainer, id, setId, history,
     return (
     <div>
     <ul className="history-list">
-        {history.map((x, index, self) => <a className="history-item" href="" onClick={(e) => {
+        {history.map((x, index) => <a className="history-item" key={x._id} href="" onClick={(e) => {
             e.preventDefault();
             setId(x._id)
             setHistory((previousHistory) => previousHistory.slice(0, index))

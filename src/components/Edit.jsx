@@ -1,16 +1,18 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link, useParams, useNavigate } from "react-router-dom"
 import * as api from "../api"
+import { UserContext } from "../contexts"
 
-const Edit = () => {
-    const navigate = useNavigate();
+const Edit = ({addEvent, currentContainer}) => {
+    const navigate = useNavigate()
 
     const {id} = useParams()
     const [isLoading, setIsLoading] = useState(true)
     const [imageFile, setImageFile] = useState("")
     const [getImageFile, setGetImageFile] = useState("")
     const [titleInput, setTitle] = useState("")
-    const [descInput, setDesc] = useState("")
+    const [descInput, setDesc] = useState(""),
+        {user, setUser} = useContext(UserContext)
 
     useEffect(() => {
         setIsLoading(true)
@@ -36,12 +38,8 @@ const Edit = () => {
         if (imageFile) formData.append('file', imageFile)
         formData.append('name', titleInput)
         formData.append('description', descInput)
-        // api.insertapifunction(formData).then(()=>{
-        //     console.log("Successful")
-            navigate(-1)
-        // }).catch((err)=>{
-        //     console.log("Something went wrong", err)
-        // })
+        navigate(-1)
+        addEvent(user.name, new Date(), currentContainer.name, 'edited', titleInput)
     }
 
     if (isLoading) return <p>Loading</p>
