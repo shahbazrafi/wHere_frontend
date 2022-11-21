@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import { UserContext } from '../contexts.jsx';
+import {motion} from 'framer-motion'
 import { Link } from 'react-router-dom';
 import * as api from '../api.js'
 import {BsPlusSquareFill} from 'react-icons/bs'
@@ -33,17 +34,16 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
 
     
     <h1>{currentContainer.name}</h1>
-        <div className='card-field'>
+        <motion.div layout className='card-field'>
             {currentContainer.contains.map((element, index) => {
-                return <Card element={element} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} index={index}/>
+                return <motion.div initial={{ opacity: 0, translatex: 50, translateY: -20 }} animate={{ opacity: 1, translateY: 0, translateX: 0 }} transition={{ duration: 0.3, delay: index * 0.1}}> < Card element={element} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} index={index} /></motion.div>
             }
-            
         )}
         {currentContainer.contains.length===0 ? <p>Please add an item.</p> : null}
-        </div>
-        <div className='addIcon-cont'>
+        </motion.div>
+        <motion.div className='addIcon-cont'>
             <Link to="/add" ><BsPlusSquareFill className="addIcon" /></Link>
-        </div>
+        </motion.div>
     </div>
     )
 };
