@@ -44,7 +44,7 @@ const Login = ({setUser}) => {
         api.fetchUsers().then((data) => {
             setLoading(true)
             console.log(data)
-            setUsersArray(data[0])
+            // setUsersArray(data)
             setLoading(false)
         })
 
