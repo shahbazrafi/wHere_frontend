@@ -65,13 +65,14 @@ const Edit = () => {
         <input type="submit"/>
     </div>
     </form>
-
+    <br></br>
     <p><strong>Preview:</strong></p>
     <p>Parent ID: {id}</p>
     <p>Name: {titleInput}</p>
     <p>Description: {descInput}</p>
     <p>Image:</p>
     {imageFile ? null : <img alt="" className="preview-image" src={`data:image/png;base64,${getImageFile}`}></img>}
+    <br></br>
     <img alt="" className="preview-image" id="preview-image"></img>
     
     </>
