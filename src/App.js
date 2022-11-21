@@ -18,7 +18,7 @@ function App() {
   const [user, setUser] = useState({});
   const [search, setSearch] = useState("")
   
-
+  //test data
   const testEvent1 = {
     user: 'cam',
     time: new Date(),
@@ -43,7 +43,7 @@ function App() {
         {user.name ?
         <Routes>
           <Route path='/' element={<> <Noticeboard events={events} setEvents={setEvents} /><SearchSection search={search} setSearch={setSearch}/><Home user={user} currentContainer={currentContainer} setCurrentContainer={setCurrentContainer} id={id} setId={setId} history={history} setHistory={setHistory} /></>} />
-          <Route path='/add' element={<ElementUpload user={user} currentContainer={currentContainer}/>} />
+          <Route path='/add' element={<ElementUpload addEvent={addEvent} user={user} currentContainer={currentContainer}/>} />
           <Route path='/search/:search_query' element={<Search />}></Route>
           <Route path='/edit/:id' element={<Edit />}></Route>
         </Routes>

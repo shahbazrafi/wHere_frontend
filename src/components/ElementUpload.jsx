@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import * as api from "../api"
 import { Link, useNavigate } from 'react-router-dom';
 
-const ElementUpload = ({currentContainer}) => {
+const ElementUpload = ({currentContainer, addEvent}) => {
     const navigate = useNavigate();
 
     const [imageFile, setImageFile] = useState("")
@@ -17,7 +17,7 @@ const ElementUpload = ({currentContainer}) => {
         let preview = document.getElementById("preview-image")
         preview.src = src
     }
-    useEffect(() => {} , [imageFile])
+    useEffect(() => {} , [imageFile])   //Is this doing anything, can this be deleted?
 
     const handleSubmit = (e)=>{
         e.preventDefault()
@@ -26,14 +26,16 @@ const ElementUpload = ({currentContainer}) => {
         formData.append('name', titleInput)
         formData.append('description', descInput)
         if (typeInput==="Container") {
-            api.addContainer(formData, currentContainer._id).then(()=>{
+            api.addContainer(formData, currentContainer._id).then(() => {
+                addEvent('place-holder-user', new Date(), currentContainer.name, 'added an container', titleInput)
                 console.log("Successful")
                 navigate(`/`)
             }).catch((err)=>{
                 console.log("Something went wrong", err)
             })
         } else if (typeInput==="Item") {
-            api.addItem(formData, currentContainer._id).then(()=>{
+            api.addItem(formData, currentContainer._id).then(() => {
+                addEvent('place-holder-user', new Date(), currentContainer.name, 'added an container', titleInput)
                 console.log("Successful")
                 navigate(`/`)
             }).catch((err)=>{
