@@ -14,6 +14,7 @@ export const fetchContainer = (container_id) => {
   export const fetchUsers = () => {
     return api.get(`users`).then(({data}) => {  
       console.log(data)
+      return data
     })
   };
 

@@ -33,6 +33,7 @@ const Card = ({name, image, description, _id, setHistory, setId, setCurrentConta
             }
             }}/></div>
         : null }
+        {contains ? <span className='containslength'>{contains.length}</span>: null}
         <div className='editButton'><AiFillEdit className="editIcon" onClick={()=> {
             navigate(`/edit/${_id}`)
             }}/></div>

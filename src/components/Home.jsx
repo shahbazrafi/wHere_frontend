@@ -37,7 +37,9 @@ const Home = ({ user, currentContainer, setCurrentContainer, id, setId, history,
                 let { name, image, description, _id, contains, parent_id} = element;
                 return <Card  name={name} image={image} description={description} _id={_id} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} contains={contains} currentContainer={currentContainer} index={index} parent_id={parent_id}/>
             }
+            
         )}
+        {currentContainer.contains.length===0 ? <p>Please add an item.</p> : null}
         </div>
         <div className='addIcon-cont'>
             <Link to="/add" ><BsPlusSquareFill className="addIcon" /></Link>
