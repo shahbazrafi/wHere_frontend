@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import {HiSearchCircle} from 'react-icons/hi'
 
 
 
@@ -16,13 +17,15 @@ const SearchSection = ({search, setSearch}) => {
 
     return <>
     <form onSubmit={handleSubmit}>
-    <div>
-    <label htmlFor="search">Search Item:</label>
-    <input type="text" id="search" placeholder="Search for an item" value={search} name="search" required onChange={handleChange}/>
+    <div className="search">
+        <input className="search-field" type="text" id="search" placeholder="Search for an item" value={search} name="search" required onChange={handleChange}/>
+        <HiSearchCircle id="search-btn">
+            <input type="submit" />
+        </HiSearchCircle>
     </div>
-    <div>
-    <input type="submit"/>
-    </div>
+    
+    
+    
     </form>
     </>
 }
