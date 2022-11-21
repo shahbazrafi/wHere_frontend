@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import { MdOutlineExpandMore, MdOutlineExpandLess } from 'react-icons/md'
+import Event from './Event'
 const dayjs = require('dayjs'),
     relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime)
@@ -13,16 +14,12 @@ const Noticeboard = ({ events, setEvents }) => {
 
     let key = 0;
     return <div className="noticeboard">
+        {!isExpanded ? <li className="event-item"><Event event={events[events.length-1]} /></li>: <></>}
         {isExpanded && <ul className="event-list">
             {events.map(event => {
-                const { user, time, location, type, subject } = event,
-                    happenedAgo = dayjs(time).fromNow()
                 key++;
                 return <li key={key} className="event-item">
-                    <p className="event-user">{user}</p>
-                    <p className="event-time">{happenedAgo}</p>
-                    <p className="event-desc">{`${type}: ${subject}`}</p>
-                    <p className="event-loc">{`in ${location}`}</p> 
+                    <Event event={event} />
                 </li>
             })}
         </ul>}

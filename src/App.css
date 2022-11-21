@@ -68,7 +68,7 @@ body {
   align-items: center;
   justify-content: space-around;
 }
-.event-item {
+.event-item, #latest-event {
   border: 1px solid black;
   border-radius: 10px;
   width: 95%;
