@@ -7,6 +7,7 @@ import ElementUpload from './components/ElementUpload';
 import Search from './components/Search'
 import SearchSection from './components/SearchSection';
 import Edit from './components/Edit';
+import Login from './components/Login';
 
 function App() {
   const [currentContainer, setCurrentContainer] = useState({ "name": "All", "contains": [] })
@@ -25,7 +26,7 @@ function App() {
           <Route path='/search/:search_query' element={<Search />}></Route>
           <Route path='/edit/:id' element={<Edit />}></Route>
         </Routes>
-        : <p>Please log in to use this app.</p>}
+        : <Login setUser={setUser}/>}
       </div>
       
     </BrowserRouter>
