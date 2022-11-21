@@ -8,8 +8,8 @@ const Event = ({ event }) => {
 
     return (<>
         <p className="event-user">{user}</p>
-        <p className="event-time">{happenedAgo}</p>
         <p className="event-desc">{`${type}: ${subject}`}</p>
+        <p className="event-time">{happenedAgo}</p>
         <p className="event-loc">{`in ${location}`}</p></> )
 }
 export default Event
