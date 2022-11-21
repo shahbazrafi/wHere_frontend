@@ -62,12 +62,11 @@ export const fetchContainer = (container_id) => {
     }})
   }
 
-  export const deleteItem = (id, parent_id) => {
-    return api.delete(`/item`, {"parent_id": parent_id, "item_id": id}, {
-      headers: {
-        'enctype': 'multipart/form-data',
-        'Content-Type': 'multipart/form-data'
-    }})
+  export const deleteItem = (parent_id, id) => {
+    return api.delete(`/item`, {
+      headers: {'Content-Type': 'application/json'},
+      data: {"parent_id": parent_id, "item_id": id}
+    })
   }
 
 
