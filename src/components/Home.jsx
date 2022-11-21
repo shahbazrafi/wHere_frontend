@@ -29,8 +29,7 @@ const Home = ({ user, currentContainer, setCurrentContainer, id, setId, history,
         }}><li key={x.index}>{x.name}</li></a>)}
     </ul>
 
-    {user.name ? 
-    <>
+    
     <h1>{currentContainer.name}</h1>
         <div className='card-field'>
             {currentContainer.contains.map((element, index) => {
@@ -43,10 +42,6 @@ const Home = ({ user, currentContainer, setCurrentContainer, id, setId, history,
         <div className='addIcon-cont'>
             <Link to="/add" ><BsPlusSquareFill className="addIcon" /></Link>
         </div>
-    </>
-    :
-    <p>Please log in to use this app.</p>
-    }
     </div>
     )
 };

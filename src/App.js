@@ -18,12 +18,14 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Header user={user} setUser={setUser} />
+        {user.name ?
         <Routes>
           <Route path='/' element={<><SearchSection search={search} setSearch={setSearch}/><Home user={user} currentContainer={currentContainer} setCurrentContainer={setCurrentContainer} id={id} setId={setId} history={history} setHistory={setHistory}/></>} />
           <Route path='/add' element={<ElementUpload user={user} currentContainer={currentContainer}/>} />
           <Route path='/search/:search_query' element={<Search />}></Route>
           <Route path='/edit/:id' element={<Edit />}></Route>
         </Routes>
+        : <p>Please log in to use this app.</p>}
       </div>
       
     </BrowserRouter>
