@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import {motion} from 'framer-motion'
 import { MdOutlineExpandMore, MdOutlineExpandLess } from 'react-icons/md'
 import Event from './Event'
 const dayjs = require('dayjs'),
@@ -11,19 +12,23 @@ const Noticeboard = ({ events, setEvents }) => {
             setIsExpanded(state => !state)
         }
     let key = 0;
-    return <div className="noticeboard" onMouseEnter={toggleExpand} onMouseLeave={toggleExpand}>
-        {!isExpanded ? <li className="event-item"><Event event={events[events.length-1]} /></li>: <></>}
-        {isExpanded && <ul className="event-list">
-            {events.map(event => {
+    return <motion.div transition={{layout: {duration: 2, type: 'spring' }}} layout className="noticeboard" onMouseEnter={toggleExpand} onMouseLeave={toggleExpand}>
+        {!isExpanded ? <motion.li layout='transition' className="event-item"><Event event={events[events.length-1]} /></motion.li>: <></>}
+        {isExpanded && <motion.ul  layout className="event-list">
+            {events.map((event, index) => {
                 key++;
-                return <li key={key} className="event-item">
+                return <motion.li
+                    initial={{ opacity: 0, translateX: -50, translateY: -50 }}
+                    animate={{ opacity: 1, translateX: 0, translateY: 0 }}
+                    transition={{duration: 0.3, delay: index * 0.1}}
+                    key={key} className="event-item">
                     <Event event={event} />
-                </li>
+                </motion.li>
             })}
-        </ul>}
-        <button onClick={toggleExpand} >
+        </motion.ul>}
+        <motion.button onClick={toggleExpand} >
             {isExpanded ? <MdOutlineExpandLess /> : <MdOutlineExpandMore />}
-        </button>
-    </div>
+        </motion.button>
+    </motion.div>
 }
 export default Noticeboard

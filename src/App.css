@@ -9,6 +9,7 @@
 }
 
 :root {
+  font-family: sans-serif;
   box-sizing: border-box;
   --text-background: rgba(0, 0, 0, 0.5);
   --box-shadows: rgba(36, 21, 126, 0.7);
@@ -18,7 +19,7 @@
 
 .App {
   text-align: center;
-  
+  background: linear-gradient(to right, white, auqua);
 }
 
 header {
