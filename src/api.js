@@ -70,6 +70,10 @@ export const fetchContainer = (container_id) => {
     })
   }
 
+  export const deleteContainer = (container_id) => {
+    return api.delete(`/container/${container_id}`)
+  }
+
 
 
 

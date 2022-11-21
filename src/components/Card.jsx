@@ -32,7 +32,16 @@ const Card = ({name, image, description, _id, setHistory, setId, setCurrentConta
                 
             }
             }}/></div>
-        : null }
+        : <div className='deleteButton'><MdDeleteForever className="deleteIcon" onClick={()=> {
+            if(window.confirm(`Are you sure you want to delete ${name} container?`)) {
+                api.deleteContainer(_id).then(() => {
+                    api.fetchContainer(parent_id).then((data) => {
+                        setCurrentContainer(data)
+                        alert(`${name} has been deleted.`);
+                    })
+                })
+            }
+            }}/></div> }
         {contains ? <span className='containslength'>{contains.length}</span>: null}
         <div className='editButton'><AiFillEdit className="editIcon" onClick={()=> {
             navigate(`/edit/${_id}`)
