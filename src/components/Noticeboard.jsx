@@ -1,11 +1,19 @@
-const dayjs = require('dayjs')
-const relativeTime = require('dayjs/plugin/relativeTime')
+import {useState} from 'react'
+import { MdOutlineExpandMore, MdOutlineExpandLess } from 'react-icons/md'
+const dayjs = require('dayjs'),
+    relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime)
 
-const Noticeboard = ({events, setEvents}) => {
+const Noticeboard = ({ events, setEvents }) => {
+    const [isExpanded, setIsExpanded] = useState(false),
+        toggleExpand = () => {
+            setIsExpanded(state => !state)
+            console.log(isExpanded)
+        }
+
     let key = 0;
     return <div className="noticeboard">
-        <ul className="event-list">
+        {isExpanded && <ul className="event-list">
             {events.map(event => {
                 const { user, time, location, type, subject } = event,
                     happenedAgo = dayjs(time).fromNow()
@@ -17,7 +25,10 @@ const Noticeboard = ({events, setEvents}) => {
                     <p className="event-loc">{`in ${location}`}</p> 
                 </li>
             })}
-        </ul>
+        </ul>}
+        <button onClick={toggleExpand} >
+            {isExpanded ? <MdOutlineExpandLess /> : <MdOutlineExpandMore />}
+        </button>
     </div>
 }
 export default Noticeboard
