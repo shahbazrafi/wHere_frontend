@@ -33,7 +33,8 @@ function App() {
     type: 'deleted a container',
     subject: 'tuppaware'
   }
-  const [events, setEvents] = useState([testEvent1, testEvent2])
+  const [events, setEvents] = useState([testEvent1, testEvent2]),
+    addEvent = (user, time, location, type, subject) => setEvents(currEvents => [...currEvents, {user, time, location, type, subject}]) 
 
   return (
     <BrowserRouter>
@@ -46,7 +47,7 @@ function App() {
           <Route path='/search/:search_query' element={<Search />}></Route>
           <Route path='/edit/:id' element={<Edit />}></Route>
         </Routes>
-        : <Login setUser={setUser} usersArray={usersArray} setUsersArray={setUsersArray}/>}
+        : <Login setUser={setUser} usersArray={usersArray} setUsersArray={setUsersArray} addEvent={addEvent} />}
       </div>
       
     </BrowserRouter>
