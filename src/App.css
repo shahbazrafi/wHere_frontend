@@ -97,6 +97,28 @@ header {
   }
 }
 
+/* LOG IN PAGE */
+.profiles-cont p{
+  grid-row: 1;
+  font-size: 4rem;
+}
+.profile-btn {
+  height: 10vh;
+  width: 50vw;
+  border-radius: 30px;
+  align-self: center;
+  justify-self: center;
+}
+.profile-btn:hover{
+  background-color: blueviolet;
+  color: white;
+}
+.profiles-cont {
+  height: 80vh;
+  display: grid;
+  grid-template-rows: 10vh ;
+}
+
 body {
   display: grid;
 }

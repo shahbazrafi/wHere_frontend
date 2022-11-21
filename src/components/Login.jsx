@@ -16,15 +16,15 @@ const Login = ({ usersArray, setUsersArray, addEvent }) => {
 
     }, [])
 
-    if (loading) return <><p>Please login to a user:</p><p>Loading...</p></>
+    if (loading) return <><h2>Please login to a user:</h2><p>Loading...</p></>
     
-    return <><p>Please login to a user:</p>
-    {usersArray.map(user => <p key={user.name}><a href="" onClick={(e) => {
+    return <div className="profiles-cont"><p>Please login to a user:</p>
+    {usersArray.map(user => <button className="profile-btn" key={user.name} onClick={(e) => {
         e.preventDefault()
         setUser(user)
         addEvent(user.name, new Date(), 'the app', 'logged', ' in')
-        }}>{user.name}</a></p>)}
-    </>
+        }}>{user.name}</button>)}
+    </div>
 }
 
 export default Login
