@@ -9,7 +9,7 @@ import { useContext } from 'react';
 const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, currentContainer, index}) => {
     const navigate = useNavigate(),
         { contains, name, parent_id, _id, image, description } = element,
-        {user, setUser} = useContext(UserContext)
+        {user} = useContext(UserContext)
 
     return <div className="card-cont" key={_id}>
     <div className="card"  onClick={(e) => {

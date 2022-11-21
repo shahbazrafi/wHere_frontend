@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../contexts';
 
-const Header = () => {
+const Header = ({addEvent}) => {
     const {user, setUser} = useContext(UserContext)
 
     return (
@@ -14,6 +14,7 @@ const Header = () => {
             {user.name ? 
             <p>Hi, {user.name}! | <a className = "header-link" href="" onClick={(e) => {
                 e.preventDefault();
+                addEvent(user.name, new Date(), 'Home', 'Logged ', 'out')
                 setUser("");
             }}>Logout</a></p>
             : <p><a className = "header-link" href="" onClick={(e) => {
