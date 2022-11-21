@@ -35,7 +35,6 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
     <h1>{currentContainer.name}</h1>
         <div className='card-field'>
             {currentContainer.contains.map((element, index) => {
-                console.log(currentContainer.length)
                 return <Card element={element} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} index={index}/>
             }
             

@@ -2,13 +2,17 @@ import { MdDeleteForever } from 'react-icons/md'
 import { AiFillEdit } from 'react-icons/ai'
 import { useNavigate } from "react-router-dom";
 import * as api from "../api"
+import { type } from '@testing-library/user-event/dist/type';
+import { UserContext } from '../contexts';
+import { useContext } from 'react';
 
 const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, currentContainer, index}) => {
     const navigate = useNavigate(),
-    {contains, name, parent_id, _id, image, description } = element
+        { contains, name, parent_id, _id, image, description } = element,
+        {user, setUser} = useContext(UserContext)
 
-    return <div className="card-cont">
-    <div className="card" key={name} onClick={(e) => {
+    return <div className="card-cont" key={_id}>
+    <div className="card"  onClick={(e) => {
         if (contains) {
             e.preventDefault();
             setHistory((previousHistory) => [...previousHistory, currentContainer])
@@ -28,6 +32,7 @@ const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, curren
                     let newCurrentContainer = {...currentContainer};
                     newCurrentContainer.contains.splice(index,1);
                     setCurrentContainer(newCurrentContainer);
+                    addEvent(user.name, new Date(), currentContainer.name, 'deleted', name )
                     alert(`${name} has been deleted.`)
                 })
                 
