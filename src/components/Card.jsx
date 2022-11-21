@@ -20,6 +20,7 @@ const Card = ({name, image, description, _id, setHistory, setId, setCurrentConta
         <img className="card-image" alt="temp" src={`data:image/png;base64,${image}`}></img>
     </div>
         <br></br>
+        {!contains ? 
         <div className='deleteButton'><MdDeleteForever className="deleteIcon" onClick={()=> {
             if(window.confirm(`Are you sure you want to delete ${name}?`)) {
                 api.deleteItem(parent_id, _id).then(() => {
@@ -31,6 +32,7 @@ const Card = ({name, image, description, _id, setHistory, setId, setCurrentConta
                 
             }
             }}/></div>
+        : null }
         <div className='editButton'><AiFillEdit className="editIcon" onClick={()=> {
             navigate(`/edit/${_id}`)
             }}/></div>
