@@ -11,6 +11,7 @@
 :root {
   box-sizing: border-box;
   --text-background: rgba(0, 0, 0, 0.5);
+  --box-shadows: rgba(36, 21, 126, 0.7);
   -ms-overflow-style: none;  
   scrollbar-width: none;  
 }
@@ -150,6 +151,10 @@ body {
   width: 100%;
   overflow: hidden;
   color: white;
+}
+.card:hover {
+  border: 3px solid black;
+  box-shadow: 10px 15px 0px 0px var(--box-shadows);
 }
 .card-name {
   position: absolute;
