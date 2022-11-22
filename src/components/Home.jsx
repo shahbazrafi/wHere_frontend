@@ -3,13 +3,15 @@ import { UserContext } from '../contexts.jsx';
 import {motion} from 'framer-motion'
 import { Link } from 'react-router-dom';
 import * as api from '../api.js'
-import {BsPlusSquareFill} from 'react-icons/bs'
+import { BsPlusSquareFill } from 'react-icons/bs'
+import Carousel from './Carousel.jsx';
 import Card from './Card.jsx';
 
 const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHistory, addEvent }) => {
     
     const [isLoading, setIsLoading] = useState(true),
-        {user, setUser} = useContext(UserContext)
+        { user, setUser } = useContext(UserContext),
+        [screenWidth, setScreenWidth] = useState(window.innerWidth)
 
     useEffect(() => {
         setIsLoading(true)
@@ -20,9 +22,18 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
         })
     }, [id])
 
+    useEffect(() => {
+        const changeWidth = () => {
+            setScreenWidth(window.innerWidth)
+        }
+        window.addEventListener('resize', changeWidth)
+    }, [])
+
     if (isLoading) return <p className='loading'>Loading</p>
 
     return (
+        screenWidth > 750 ?
+            <Carousel currentContainer={currentContainer} show={screenWidth > 1655? 4: screenWidth > 1300? 3: 2} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer}/>:
     <div>
     <ul className="history-list">
         {history.map((x, index) => <a className="history-item" key={x._id} href="" onClick={(e) => {
