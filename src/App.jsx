@@ -36,7 +36,7 @@ function App() {
           <Route path='/add' element={<ElementUpload addEvent={addEvent}  currentContainer={currentContainer}/>} />
           <Route path='/search/:search_query' element={<Search addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} />}></Route>
           <Route path='/edit/container/:id' element={<EditContainer currentContainer={currentContainer} addEvent={addEvent} />}></Route>
-          <Route path='/edit/item/' element={<EditItem currentContainer={currentContainer} addEvent={addEvent} />}></Route>
+          <Route path='/edit/item/:id' element={<EditItem currentContainer={currentContainer} addEvent={addEvent} />}></Route>
         </Routes>
         : <Login usersArray={usersArray} setUsersArray={setUsersArray} addEvent={addEvent} />}
       </div>
