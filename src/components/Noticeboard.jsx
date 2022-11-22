@@ -26,7 +26,7 @@ const Noticeboard = ({ events, setEvents }) => {
                 </motion.li>
             })}
         </motion.ul>}
-        <motion.button layout='position' transition={{layout: {duration: 0.5, type: 'none'}}} onClick={toggleExpand} >
+        <motion.button layout='position' transition={{layout: {duration: 0.5, type: 'none'}}} >
             {isExpanded ? <HiChevronDoubleUp className='expand-arrow'/> : <HiChevronDoubleDown className='expand-arrow'/>}
         </motion.button >
     </motion.div>
