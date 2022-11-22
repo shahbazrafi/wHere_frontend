@@ -13,7 +13,7 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
 
     useEffect(() => {
         setIsLoading(true)
-        api.fetchContainer(id).then(data => {
+        api.fetchContainerById(id).then(data => {
             console.log(data, '<<<data in home')
             setCurrentContainer(data)
             setIsLoading(false)
