@@ -12,6 +12,7 @@
   font-family: sans-serif;
   box-sizing: border-box;
   --text-background: rgba(0, 0, 0, 0.5);
+  --dark: rgb(36, 30, 70);
   --box-shadows: rgba(36, 21, 126, 0.7);
   -ms-overflow-style: none;  
   scrollbar-width: none;  
@@ -19,7 +20,8 @@
 
 .App {
   text-align: center;
-  background: linear-gradient(to right, white, auqua);
+  background: linear-gradient(to right, white, mediumslateblue);
+  min-height: 100vh;
 }
 
 header {
@@ -29,7 +31,7 @@ header {
   display: grid;
   grid-template-columns: 10px 2fr 5fr 10px;
   width: 100%;
-  background-color: #282c34;
+  background-color: var(--dark);
   min-height: 10vh;
   align-items: center;
   justify-content: space-between;
@@ -48,6 +50,11 @@ header {
   }
 }
 
+.loading {
+  margin: auto;
+  margin-top: 40vh;
+}
+
 .profile{
   grid-column: 3/4;
   text-align: right;
@@ -57,7 +64,7 @@ header {
 }
 @keyframes profile-load {
   0% {
-    transform: translateX(50%);
+    transform: translateX(100%);
   }
   80% {
     transform: translateX(-15%);
@@ -82,7 +89,7 @@ header {
 }
 @keyframes logo-load {
   0% {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
   80% {
     transform: translateX(15%);
@@ -130,11 +137,16 @@ body {
 
 /* NOTICEBOARD */
 .noticeboard {
+  position: absolute;
+  top: 11vh;
+  left: 5vh;
+  z-index: 90;
   margin: auto;
   border: 5px solid black;
+  background-color: white;
   border-radius: 10px;
-  margin-top: 5px;
   width: 90vw;
+
 }
 .event-list {
   list-style: none;
@@ -145,12 +157,18 @@ body {
 }
 .event-item, #latest-event {
   border: 1px solid black;
+  background-color: white;
   border-radius: 10px;
   width: 95%;
   margin: 5px;
   padding: 5px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.expand-arrow {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
 }
 
 
@@ -160,7 +178,7 @@ body {
   width: 70vw;
   height: 30px;
   margin: auto;
-  margin-top: 5px;
+  margin-top: 10vh;
 }
 .search-field {
   width: 100%;
@@ -168,6 +186,7 @@ body {
   border-radius: 30px;
   border: 3px solid black;
   padding-inline: 3px;
+  padding-left: 12px;
 }
 #search-btn {
   position: absolute;
@@ -198,10 +217,10 @@ body {
   overflow: hidden;
   color: white;
 }
-.card:hover {
+/* .card:hover {
   border: 3px solid black;
   box-shadow: 10px 15px 0px 0px var(--box-shadows);
-}
+} */
 .card-name {
   position: absolute;
   top: 0;
@@ -240,6 +259,9 @@ body {
   right: 0;
   z-index:10;
 }
+.deleteButton:hover {
+  cursor: pointer;
+}
 
 .containslength{
   color: white;
@@ -271,7 +293,6 @@ body {
   position: sticky;
   top:8vh;
   z-index: 100;
-  background-color: white;
   list-style-type: none;
   margin: 0;
   margin-top: 8px;
@@ -283,16 +304,19 @@ body {
 }
 
 .history-item {
-  border-left: 4px ridge;
-  border-right: 4px ridge;
-  border-top: 4px ridge;
+  border-left: 4px ridge var(--dark);
+  border-right: 4px ridge var(--dark);
+  border-top: 4px ridge var(--dark);
+  background-color: white;
   margin: 0;
   padding: 4px;
   width: 90%;
+  text-decoration: none;
+  color: black;
 }
 
 .history-item:last-child {
-  border-bottom: 4px ridge;
+  border-bottom: 4px ridge var(--dark);
 }
 
 .history-item:hover {
@@ -300,12 +324,44 @@ body {
   cursor: pointer;
 }
 
-.history-item > a {
+/* UPLOAD PAGE */
+
+.back-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-decoration: none;
-  color: black;
+}
+
+.back-link > .history-item {
+  margin: 10px;
+}
+
+.upload-form {
+  margin: 10px;
+}
+
+.upload-form > div {
+  margin: 5px;
+}
+
+.upload-form > div > label {
+  margin-right: 10px;
+}
+
+.upload-form > div > input, select {
+  border: 2px solid var(--dark);
+  padding-left: 5px;
+}
+
+.upload-form > div > #image, #submit {
+  padding: 5px;
 }
 
 .preview-image {
-  width:100%;
+  position: relative;
+  border-radius: 10px;
+  width: 90%;
   max-width: 640px;
+  overflow: hidden;
 }

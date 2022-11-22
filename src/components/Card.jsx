@@ -2,31 +2,30 @@ import { MdDeleteForever } from 'react-icons/md'
 import { AiFillEdit } from 'react-icons/ai'
 import { useNavigate } from "react-router-dom";
 import * as api from "../api"
-import { type } from '@testing-library/user-event/dist/type';
 import { UserContext } from '../contexts';
 import { useContext } from 'react';
+import {motion } from 'framer-motion'
 
 const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, currentContainer, index}) => {
     const navigate = useNavigate(),
         { contains, name, parent_id, _id, image, description } = element,
         {user} = useContext(UserContext)
 
-    return <div className="card-cont" key={_id}>
-    <div className="card"  onClick={(e) => {
+    return <motion.div className="card-cont" key={_id} whileHover={{scale: 1.1, zIndex: 50}}>
+    <motion.div className="card" onClick={(e) => {
         if (contains) {
             e.preventDefault();
             setHistory((previousHistory) => [...previousHistory, currentContainer])
             setId(_id)
         }
-    }}>
-                
+    }}>          
         <p className="card-name">{name}</p>
         <p className="card-desc">{description}</p>
         <img className="card-image" alt="temp" src={`data:image/png;base64,${image}`}></img>
-    </div>
+    </motion.div>
         <br></br>
         {!contains ? 
-        <div className='deleteButton'><MdDeleteForever className="deleteIcon" onClick={()=> {
+        <motion.div className='deleteButton'><MdDeleteForever className="deleteIcon" onClick={()=> {
             if(window.confirm(`Are you sure you want to delete ${name}?`)) {
                 api.deleteItem(parent_id, _id).then(() => {
                     let newCurrentContainer = {...currentContainer};
@@ -37,8 +36,8 @@ const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, curren
                 })
                 
             }
-            }}/></div>
-        : <div className='deleteButton'><MdDeleteForever className="deleteIcon" onClick={()=> {
+            }}/></motion.div>
+        : <motion.div className='deleteButton' whileHover={{scale: 2, zIndex: 50}} ><MdDeleteForever className="deleteIcon" onClick={()=> {
             if(window.confirm(`Are you sure you want to delete ${name} container?`)) {
                 api.deleteContainer(_id).then(() => {
                     api.fetchContainerById(parent_id).then((data) => {
@@ -48,15 +47,15 @@ const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, curren
                     })
                 })
             }
-            }}/></div> }
+            }}/></motion.div> }
         {contains ? <span className='containslength'>{contains.length}</span>: null}
-        {contains ? <div className='editButton'><AiFillEdit className="editIcon" onClick={()=> {
-            navigate(`/edit/container/${_id}`)}}/></div>
-            : <div className='editButton'><AiFillEdit className="editIcon" onClick={()=> {
-                navigate(`/edit/item/${index}`, {index: index})}}/></div>}
+        {contains ? <motion.div className='editButton' whileHover={{scale: 2, zIndex: 50}}><AiFillEdit className="editIcon" onClick={()=> {
+            navigate(`/edit/container/${_id}`)}}/></motion.div>
+            : <motion.div className='editButton' whileHover={{scale: 2, zIndex: 50}}><AiFillEdit className="editIcon" onClick={()=> {
+                navigate(`/edit/item/${index}`)}}/></motion.div>}
         
         
-    </div>
+    </motion.div>
         
 }
 
