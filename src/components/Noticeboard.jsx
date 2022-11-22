@@ -18,6 +18,7 @@ const Noticeboard = ({ events, setEvents }) => {
             {events.map((event, index) => {
                 key++;
                 return <motion.li
+                    whileHover={{scale: 1.1, zIndex: 50}}
                     initial={{ opacity: 0, translateX: -50, translateY: -50 }}
                     animate={{ opacity: 1, translateX: 0, translateY: 0 }}
                     transition={{duration: 0.2, delay: index * 0.07}}
