@@ -29,6 +29,7 @@ const EditItem = ({ addEvent, currentContainer}) => {
         formData.append('name', titleInput)
         formData.append('description', descInput)
         formData.append('parent_id', parentId)
+        formData.append('item_id', currentContainer.contains[id]._id)
         api.patchItem(formData, currentContainer._id).then(data => {
             navigate(-1)
             addEvent(user.name, new Date(), currentContainer.name, 'edited', titleInput)
@@ -60,6 +61,7 @@ const EditItem = ({ addEvent, currentContainer}) => {
     <br></br>
     <p><strong>Preview:</strong></p>
     <p>Parent ID: {currentContainer._id}</p>
+    <p>Item ID: {currentContainer.contains[id]._id}</p>
     <p>Name: {titleInput}</p>
     <p>Description: {descInput}</p>
     <p>Image:</p>
