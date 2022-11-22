@@ -7,9 +7,10 @@ import { UserContext } from './contexts';
 import ElementUpload from './components/ElementUpload';
 import Search from './components/Search'
 import SearchSection from './components/SearchSection';
-import Edit from './components/Edit';
+import EditContainer from './components/EditContainer';
 import Login from './components/Login';
 import Noticeboard from './components/Noticeboard';
+import EditItem from './components/EditItem'
 
 function App() {
   const [currentContainer, setCurrentContainer] = useState({ "name": "All", "contains": [] }),
@@ -34,7 +35,8 @@ function App() {
                 <Home currentContainer={currentContainer} setCurrentContainer={setCurrentContainer} id={id} setId={setId} history={history} setHistory={setHistory} addEvent={addEvent} /></div>} />
           <Route path='/add' element={<ElementUpload addEvent={addEvent}  currentContainer={currentContainer}/>} />
           <Route path='/search/:search_query' element={<Search addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} />}></Route>
-          <Route path='/edit/:id' element={<Edit currentContainer={currentContainer} addEvent={addEvent} />}></Route>
+          <Route path='/edit/container/:id' element={<EditContainer currentContainer={currentContainer} addEvent={addEvent} />}></Route>
+          <Route path='/edit/item/' element={<EditItem currentContainer={currentContainer} addEvent={addEvent} />}></Route>
         </Routes>
         : <Login usersArray={usersArray} setUsersArray={setUsersArray} addEvent={addEvent} />}
       </div>

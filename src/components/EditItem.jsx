@@ -3,7 +3,7 @@ import { Link, useParams, useNavigate } from "react-router-dom"
 import * as api from "../api"
 import { UserContext } from "../contexts"
 
-const Edit = ({addEvent, currentContainer}) => {
+const EditItem = ({ addEvent, currentContainer}) => {
     const navigate = useNavigate()
 
     const {id} = useParams()
@@ -13,15 +13,13 @@ const Edit = ({addEvent, currentContainer}) => {
     const [titleInput, setTitle] = useState("")
     const [descInput, setDesc] = useState(""),
         {user, setUser} = useContext(UserContext)
-
+    
     useEffect(() => {
         setIsLoading(true)
-        api.fetchContainer(id).then(data => {
-            setTitle(data.name)
-            setDesc(data.description)
-            setGetImageFile(data.image)
-            setIsLoading(false)
-        })
+        setTitle(currentContainer.contains[id].name)
+        setDesc(currentContainer.contains[id].description)
+        setGetImageFile(currentContainer.contains[id].image)
+        setIsLoading(false)
     }, [id])
 
     const handlePhoto = (e)=>{
@@ -76,4 +74,4 @@ const Edit = ({addEvent, currentContainer}) => {
     </>
 }
 
-export default Edit
+export default EditItem
