@@ -77,8 +77,8 @@ export const fetchContainerById = (container_id) => {
     }})
   }
 
-  export const patchItem = (formData, parent_id) => {
-    return api.patch(`/edititem/${parent_id}`, formData, {
+  export const patchItem = (formData, old_parent_id) => {
+    return api.patch(`/edititem/${old_parent_id}`, formData, {
       headers: {'Content-Type': 'application/json'}
     })
   }
