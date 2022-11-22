@@ -64,7 +64,7 @@ header {
 }
 @keyframes profile-load {
   0% {
-    transform: translateX(100%);
+    transform: translateX(50%);
   }
   80% {
     transform: translateX(-15%);
@@ -108,7 +108,8 @@ header {
 /* LOG IN PAGE */
 .profiles-cont p{
   grid-row: 1;
-  font-size: 4rem;
+  font-size: 3rem;
+  align-self: center;
 }
 .profile-btn {
   height: 10vh;
@@ -139,9 +140,8 @@ body {
 .noticeboard {
   position: absolute;
   top: 11vh;
-  left: 5vh;
+  left: 4vw;
   z-index: 90;
-  margin: auto;
   border: 5px solid black;
   background-color: white;
   border-radius: 10px;
@@ -163,12 +163,31 @@ body {
   margin: 5px;
   padding: 5px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 0.7fr 1fr 1fr 1fr;
+}
+.noticeboard button {
+  background-color: transparent;
 }
 .expand-arrow {
-  border-radius: 50%;
+  background-color: transparent;
   width: 25px;
   height: 25px;
+}
+@media screen and (max-width: 640px) {
+  .event-item, #latest-event{
+    font-size : 0.8rem;
+  }
+  .profiles-cont p {
+    font-size: 2rem;
+  }
+}
+@media screen and (max-width: 460px) {
+  .event-item, #latest-event{
+    font-size : 0.6rem;
+  }
+  .profiles-cont p {
+    font-size: 1rem;
+  }
 }
 
 
@@ -178,7 +197,7 @@ body {
   width: 70vw;
   height: 30px;
   margin: auto;
-  margin-top: 10vh;
+  margin-top: 100px;
 }
 .search-field {
   width: 100%;

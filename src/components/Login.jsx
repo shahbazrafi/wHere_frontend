@@ -18,7 +18,7 @@ const Login = ({ usersArray, setUsersArray, addEvent }) => {
 
     if (loading) return <><h2>Please login to a user:</h2><p>Loading...</p></>
     
-    return <div className="profiles-cont"><p>Please login to a user:</p>
+    return <div className="profiles-cont"><p>Please select a user:</p>
     {usersArray.map(user => <button className="profile-btn" key={user.name} onClick={(e) => {
         e.preventDefault()
         setUser(user)
