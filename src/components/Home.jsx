@@ -33,7 +33,7 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
 
     return (
         screenWidth > 750 ?
-            <Carousel currentContainer={currentContainer} show={screenWidth > 1655? 4: screenWidth > 1300? 3: 2} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer}/>:
+            <Carousel currentContainer={currentContainer} show={screenWidth > 1655? 4: screenWidth > 1200? 3: 2} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer}/>:
     <div>
     <ul className="history-list">
         {history.map((x, index) => <a className="history-item" key={x._id} href="" onClick={(e) => {
