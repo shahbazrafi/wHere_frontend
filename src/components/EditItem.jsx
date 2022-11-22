@@ -8,9 +8,9 @@ const EditItem = ({ addEvent, currentContainer}) => {
 
     const {id} = useParams()
     const [isLoading, setIsLoading] = useState(true)
-    const [imageFile, setImageFile] = useState("")
     const [getImageFile, setGetImageFile] = useState("")
     const [titleInput, setTitle] = useState("")
+    const [parentId, setParentId] = useState("")
     const [descInput, setDesc] = useState(""),
         {user, setUser} = useContext(UserContext)
     
@@ -19,25 +19,21 @@ const EditItem = ({ addEvent, currentContainer}) => {
         setTitle(currentContainer.contains[id].name)
         setDesc(currentContainer.contains[id].description)
         setGetImageFile(currentContainer.contains[id].image)
+        setParentId(currentContainer._id)
         setIsLoading(false)
     }, [id])
-
-    const handlePhoto = (e)=>{
-        e.preventDefault()
-        setImageFile(e.target.files[0])
-        let src = URL.createObjectURL(e.target.files[0]);
-        let preview = document.getElementById("preview-image")
-        preview.src = src
-    }
 
     const handleSubmit = (e)=>{
         e.preventDefault()
         const formData = new FormData();
-        if (imageFile) formData.append('file', imageFile)
         formData.append('name', titleInput)
         formData.append('description', descInput)
-        navigate(-1)
-        addEvent(user.name, new Date(), currentContainer.name, 'edited', titleInput)
+        formData.append('parent_id', parentId)
+        api.patchItem(formData, currentContainer._id).then(data => {
+            navigate(-1)
+            addEvent(user.name, new Date(), currentContainer.name, 'edited', titleInput)
+        })
+        
     }
 
     if (isLoading) return <p>Loading</p>
@@ -54,8 +50,8 @@ const EditItem = ({ addEvent, currentContainer}) => {
         <input type="text" id="desc" placeholder="Description" value={descInput} name="desc" onChange={(e) => {setDesc(e.target.value)}}/>
     </div>
     <div>
-        <label htmlFor="image">Change Image</label>
-        <input type="file" id="image" name="image" useref={imageFile} onChange={handlePhoto}/>
+        <label htmlFor="parent_id">Edit Parent ID</label>
+        <input type="text" id="parent_id" placeholder="New Parent ID" value={parentId} name="parent_id" onChange={(e) => {setParentId(e.target.value)}}/>
     </div>
     <div>
         <input type="submit"/>
@@ -67,9 +63,8 @@ const EditItem = ({ addEvent, currentContainer}) => {
     <p>Name: {titleInput}</p>
     <p>Description: {descInput}</p>
     <p>Image:</p>
-    {imageFile ? null : <img alt="" className="preview-image" src={`data:image/png;base64,${getImageFile}`}></img>}
-    <br></br>
-    <img alt="" className="preview-image" id="preview-image"></img>
+    <img alt="" className="preview-image" src={`data:image/png;base64,${getImageFile}`}></img>
+   
     
     </>
 }

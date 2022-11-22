@@ -63,12 +63,24 @@ export const fetchContainerById = (container_id) => {
     }})
   }
 
-  export const addItem = (formData, parent_id) => {
-    return api.post(`/items/additem/${parent_id}`, formData, {
+  export const patchContainer = (formData, id) => {
+    return api.patch(`/editcontainer/${id}`, formData, {
+      headers: {'Content-Type': 'application/json'}
+    })
+  }
+
+  export const addItem = (formData, id) => {
+    return api.post(`/items/additem/${id}`, formData, {
       headers: {
         'enctype': 'multipart/form-data',
         'Content-Type': 'multipart/form-data'
     }})
+  }
+
+  export const patchItem = (formData, parent_id) => {
+    return api.patch(`/edititem/${parent_id}`, formData, {
+      headers: {'Content-Type': 'application/json'}
+    })
   }
 
   export const deleteItem = (parent_id, id) => {
