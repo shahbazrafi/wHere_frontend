@@ -132,11 +132,16 @@ body {
 
 /* NOTICEBOARD */
 .noticeboard {
+  position: absolute;
+  top: 11vh;
+  left: 5vh;
+  z-index: 90;
   margin: auto;
   border: 5px solid black;
+  background-color: white;
   border-radius: 10px;
-  margin-top: 5px;
   width: 90vw;
+
 }
 .event-list {
   list-style: none;
@@ -147,12 +152,18 @@ body {
 }
 .event-item, #latest-event {
   border: 1px solid black;
+  background-color: white;
   border-radius: 10px;
   width: 95%;
   margin: 5px;
   padding: 5px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.expand-arrow {
+  background-color: white;
+  width: 25px;
+  height: 25px;
 }
 
 
@@ -162,7 +173,7 @@ body {
   width: 70vw;
   height: 30px;
   margin: auto;
-  margin-top: 5px;
+  margin-top: 10vh;
 }
 .search-field {
   width: 100%;
@@ -201,10 +212,10 @@ body {
   overflow: hidden;
   color: white;
 }
-.card:hover {
+/* .card:hover {
   border: 3px solid black;
   box-shadow: 10px 15px 0px 0px var(--box-shadows);
-}
+} */
 .card-name {
   position: absolute;
   top: 0;
