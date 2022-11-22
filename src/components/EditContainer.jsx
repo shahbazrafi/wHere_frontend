@@ -20,7 +20,7 @@ const EditContainer = ({addEvent, currentContainer}) => {
             setTitle(data.name)
             setDesc(data.description)
             setGetImageFile(data.image)
-            setParentId(id)
+            setParentId(data.parent_id)
             setIsLoading(false)
         })
     }, [id])
@@ -31,8 +31,11 @@ const EditContainer = ({addEvent, currentContainer}) => {
         formData.append('name', titleInput)
         formData.append('description', descInput)
         formData.append('parent_id', parentId)
-        navigate(-1)
-        addEvent(user.name, new Date(), currentContainer.name, 'edited', titleInput)
+        api.patchContainer(formData, id).then(data => {
+            addEvent(user.name, new Date(), currentContainer.name, 'edited', titleInput)
+            navigate(-1)
+        })
+        
     }
 
     if (isLoading) return <p>Loading</p>
@@ -58,7 +61,7 @@ const EditContainer = ({addEvent, currentContainer}) => {
     </form>
     <br></br>
     <p><strong>Preview:</strong></p>
-    <p>Parent ID: {id}</p>
+    <p>Parent ID: {parentId}</p>
     <p>Name: {titleInput}</p>
     <p>Description: {descInput}</p>
     <p>Image:</p>
