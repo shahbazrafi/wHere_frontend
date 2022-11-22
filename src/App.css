@@ -50,6 +50,11 @@ header {
   }
 }
 
+.loading {
+  margin: auto;
+  margin-top: 40vh;
+}
+
 .profile{
   grid-column: 3/4;
   text-align: right;
@@ -59,7 +64,7 @@ header {
 }
 @keyframes profile-load {
   0% {
-    transform: translateX(50%);
+    transform: translateX(100%);
   }
   80% {
     transform: translateX(-15%);
@@ -84,7 +89,7 @@ header {
 }
 @keyframes logo-load {
   0% {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
   80% {
     transform: translateX(15%);
@@ -161,7 +166,7 @@ body {
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 .expand-arrow {
-  background-color: white;
+  border-radius: 50%;
   width: 25px;
   height: 25px;
 }

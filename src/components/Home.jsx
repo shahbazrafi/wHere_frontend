@@ -20,7 +20,7 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
         })
     }, [id])
 
-    if (isLoading) return <p>Loading</p>
+    if (isLoading) return <p className='loading'>Loading</p>
 
     return (
     <div>
