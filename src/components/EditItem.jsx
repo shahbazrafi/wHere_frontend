@@ -40,7 +40,7 @@ const EditItem = ({ addEvent, currentContainer}) => {
     if (isLoading) return <p>Loading</p>
 
     return <>
-    <Link to="/" ><p>Back</p></Link>
+    <Link className="back-link" to="/" ><p className="history-item">Back</p></Link>
     <form onSubmit={handleSubmit} encType="multipart/form-data">
     <div>
         <label htmlFor="name">Edit title</label>
@@ -62,11 +62,15 @@ const EditItem = ({ addEvent, currentContainer}) => {
     <p><strong>Preview:</strong></p>
     <p>Parent ID: {parentId}</p>
     <p>Item ID: {currentContainer.contains[id]._id}</p>
-    <p>Name: {titleInput}</p>
-    <p>Description: {descInput}</p>
-    <p>Image:</p>
-    <img alt="" className="preview-image" src={`data:image/png;base64,${getImageFile}`}></img>
-   
+    <div className="card-field">
+    <div className="card-cont">
+    <div className="card">
+    <p className="card-name">{titleInput}</p>
+    <p className="card-desc">{descInput}</p>
+    <img alt="" className="card-image" src={`data:image/png;base64,${getImageFile}`}></img>
+    </div>
+    </div>
+    </div>
     
     </>
 }
