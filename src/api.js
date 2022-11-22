@@ -5,10 +5,7 @@ const api = axios.create({
 });
   
 export const fetchContainerById = (container_id) => {
-  return api.get(`containers/${container_id}`).then(({data}) => {
-    console.log(data, '<<< in api call')
-      return data
-    })
+  return api.get(`containers/${container_id}`).then(({data}) => data)
   }
 
   export const fetchItemById = (item_id) => {
