@@ -63,7 +63,7 @@ const EditItem = ({ addEvent, currentContainer}) => {
     </form>
     <br></br>
     <p><strong>Preview:</strong></p>
-    <p>Parent ID: {id}</p>
+    <p>Parent ID: {currentContainer._id}</p>
     <p>Name: {titleInput}</p>
     <p>Description: {descInput}</p>
     <p>Image:</p>
