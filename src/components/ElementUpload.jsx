@@ -46,9 +46,9 @@ const ElementUpload = ({currentContainer, addEvent}) => {
     }
 
     return <>
-    <Link to="/" ><p>Back</p></Link>
+    <Link className="back-link" to="/" ><p className="history-item">Back</p></Link>
     <h1>Add {typeInput}</h1>
-    <form onSubmit={handleSubmit} encType="multipart/form-data">
+    <form onSubmit={handleSubmit} encType="multipart/form-data" className="upload-form">
     <div>
         <label htmlFor="type">Type</label>
         <select id="type" name="type" required onChange={(e) => {setType(e.target.value)}}>
@@ -69,15 +69,14 @@ const ElementUpload = ({currentContainer, addEvent}) => {
         <input type="file" id="image" name="image" useref={imageFile} onChange={handlePhoto}/>
     </div>
     <div>
-        <input type="submit"/>
+        <input type="submit" id="submit"/>
     </div>
     </form>
 <p><strong>{typeInput} Preview:</strong></p>
-<p>Parent ID Name: {currentContainer.name}</p>
+<p>Parent Name: {currentContainer.name}</p>
 <p>Name: {titleInput}</p>
 <p>Description: {descInput}</p>
-<p>Image:</p>
-<img className="preview-image" id="preview-image" alt="titleInput"></img>
+<img className="preview-image" id="preview-image" alt={`${titleInput}`}></img>
 </>
 }
 
