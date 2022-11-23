@@ -29,7 +29,7 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
         window.addEventListener('resize', changeWidth)
     }, [])
 
-    if (isLoading) return <p className='loading'>Loading</p>
+    // if (isLoading) return <p className='loading'>Loading</p>
 
     return (
         screenWidth > 700 ?<>
@@ -39,7 +39,8 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
                     return <Carousel key={key} currentContainer={x} show={screenWidth > 1655 ? 4 : screenWidth > 1200 ? 3 : 2} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} isHistory={true} >
                     </Carousel>})}
             </div> 
-            <Carousel currentContainer={currentContainer} show={screenWidth > 1655 ? 4 : screenWidth > 1200 ? 3 : 2} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} isHistory={false} />
+            {isLoading ? <p className='loading'>Loading</p> :
+            <Carousel currentContainer={currentContainer} show={screenWidth > 1655 ? 4 : screenWidth > 1200 ? 3 : 2} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} isHistory={false} />}
         </> :
     <div>
     <ul className="history-list">
@@ -50,13 +51,14 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
         }}><li key={x.index}>{x.name}</li></a>)}
     </ul>
     <h1>{currentContainer.name}</h1>
+    {isLoading ? <p className='loading'>Loading</p> :
         <motion.div layout className='card-field'>
             {currentContainer.contains.map((element, index) => {
                 return <motion.div initial={{ opacity: 0, translatex: 50, translateY: -20 }} animate={{ opacity: 1, translateY: 0, translateX: 0 }} transition={{ duration: 0.3, delay: index * 0.1}}> < Card element={element} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} index={index} /></motion.div>
             }
         )}
         {currentContainer.contains.length===0 ? <p>Please add an item.</p> : null}
-        </motion.div>
+        </motion.div>}
         <motion.div className='addIcon-cont'>
             <Link to="/add" ><BsPlusSquareFill className="addIcon" /></Link>
         </motion.div>
