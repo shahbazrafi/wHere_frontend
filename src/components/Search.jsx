@@ -68,7 +68,7 @@ const Search = ({addEvent, setHistory, setId, setCurrentContainer, currentContai
     if (isLoading) return <p>Loading...</p>
 
     return <>
-    <Link to="/" ><p>Back</p></Link>
+    <Link className="back-link" to="/" ><p>Back</p></Link>
     <h1>"{search_query}" items:</h1>
 
     <div className='card-field'>
