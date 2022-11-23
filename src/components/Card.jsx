@@ -17,7 +17,7 @@ const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, curren
             if (contains) {
                 e.preventDefault();
                 setId(_id)
-                setHistory((previousHistory) => isHistory ? previousHistory.slice(0, index) : [...previousHistory, currentContainer])
+                setHistory((previousHistory) => isHistory ? previousHistory.slice(0, index+1) : [...previousHistory, currentContainer])
             }
     }}>          
         <p className="card-name">{name}</p>
