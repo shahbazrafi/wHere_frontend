@@ -40,7 +40,7 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
                     </Carousel>})}
             </div> 
             {isLoading ? <p className='loading'>Loading</p> : null }
-            {currentContainer.contains.length===0 && !isLoading? <p>Please add an item.</p> :
+            {!currentContainer.contains.length && !isLoading? <p>Please add an item.</p> :
             <Carousel currentContainer={currentContainer} show={screenWidth > 1655 ? 4 : screenWidth > 1200 ? 3 : 2} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} isHistory={false} />}
         <motion.div className='addIcon-cont'>
             <Link to="/add" ><BsPlusSquareFill className="addIcon" /></Link>
@@ -61,7 +61,7 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
                 return <motion.div initial={{ opacity: 0, translatex: 50, translateY: -20 }} animate={{ opacity: 1, translateY: 0, translateX: 0 }} transition={{ duration: 0.3, delay: index * 0.1}}> < Card element={element} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} index={index} /></motion.div>
             }
         )}
-        {currentContainer.contains.length===0 ? <p>Please add an item.</p> : null}
+        {!currentContainer.contains.length ? <p>Please add an item.</p> : null}
         </motion.div>}
         <motion.div className='addIcon-cont'>
             <Link to="/add" ><BsPlusSquareFill className="addIcon" /></Link>

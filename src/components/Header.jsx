@@ -1,26 +1,27 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../contexts';
+import {motion} from 'framer-motion'
 
 const Header = ({addEvent}) => {
     const {user, setUser} = useContext(UserContext)
 
     return (
         <header>
-        <div className='logo'>
-            <a href="/" className = "header-link"><p>wHere?</p></a>
-        </div>
-        <div className='profile'>
+        <motion.div layout className='logo' >
+            <a href="/" className = "header-link"><motion.p whileHover={{scale: 1.2, translateX: 60}}>wHere?</motion.p></a>
+        </motion.div>
+        <motion.div  className='profile'>
             {user.name ? 
-            <p>Hi, {user.name}! | <a className = "header-link" href="" onClick={(e) => {
+            <motion.p whileHover={{scale: 1.2, translateX: -100}}>Hi, {user.name}! | <motion.a className = "header-link" href="" onClick={(e) => {
                 e.preventDefault();
                 addEvent(user.name, new Date(), 'Home', 'Logged ', 'out')
                 setUser("");
-            }}>Logout</a></p>
-            : <p><a className = "header-link" href="" onClick={(e) => {
+            }}>Logout</motion.a></motion.p>
+            : <motion.p><motion.a className = "header-link" href="" onClick={(e) => {
                 e.preventDefault();
-            }}>Login</a></p>
-        }</div>
+            }}>Login</motion.a></motion.p>
+        }</motion.div>
         </header>
     )
 };
