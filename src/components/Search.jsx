@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
 import Card from './Card.jsx';
+import * as api from "../api"
+
 
 const Search = ({addEvent, setHistory, setId, setCurrentContainer, currentContainer}) => {
     const {search_query} = useParams()
@@ -62,19 +64,29 @@ const Search = ({addEvent, setHistory, setId, setCurrentContainer, currentContai
         }]
         setIsLoading(true)
         setSearchResult(testArray)
+        api.getSearch(search_query).then(data => {
+            setSearchResult(data)
+        })
         setIsLoading(false)
     }, [search_query])
 
     if (isLoading) return <p>Loading...</p>
 
     return <>
-    <Link to="/" ><p>Back</p></Link>
+    <Link className="back-link" to="/" ><p className="history-item">Back</p></Link>
     <h1>"{search_query}" items:</h1>
-
     <div className='card-field'>
+    <div className="card-cont">
         {searchResult.map((element, index) => {
-            return <Card element={element} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} index={index}/>
+            return <>
+            <div className="card">
+            <p className="card-name">{element.name}</p>
+            <p className="card-desc">{element.description}</p>
+            <img alt="" className="card-image" src={`data:image/png;base64,${element.image}`}></img>
+            </div>
+            </>
         })}
+    </div>
     </div>
     </>
 }

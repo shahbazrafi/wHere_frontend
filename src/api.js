@@ -93,6 +93,14 @@ export const fetchContainerById = (container_id) => {
     return api.get(`/containers`).then(data => data)
   }
 
+  export const getSearch = (string) => {
+    return api.get(`/allitems`).then(({data}) => {
+      console.log(data)
+      let newdata = data.filter(x => x.name.toLowerCase().includes(string.toLowerCase()))
+      console.log(newdata)
+      return newdata
+    })
+  }
 
 
 
