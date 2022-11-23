@@ -7,17 +7,30 @@ import { useContext, useState } from 'react';
 import {motion } from 'framer-motion'
 import Carousel from './Carousel';
 
-const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, currentContainer, index, screenWidth, isHistory}) => {
+const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, currentContainer, index, screenWidth, isHistory }) => {
     const navigate = useNavigate(),
         { contains, name, parent_id, _id, image, description } = element,
-        { user } = useContext(UserContext)
+        { user } = useContext(UserContext),
+        [isEpanded, setIsExpanded] = useState(false)
 
-    return <motion.div className="card-cont" key={_id} whileHover={{ scale: 1.1, zIndex: 50 }}>
+    return isEpanded ?  
+        <div className='nested-carousel'>
+            <div className='carousel-card-component'>
+            <img className="card-image" alt="temp" src={`data:image/png;base64,${image}`}></img>     
+            </div>
+            <div className='carousel-component' >
+                <Carousel currentContainer={currentContainer} show={screenWidth > 1655 ? 4 : screenWidth > 1200 ? 3 : 2} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} isHistory={false} />
+            </div>
+        </div>
+    : <motion.div className="card-cont" key={_id} whileHover={{ scale: 1.1, zIndex: 50 }}>
         <motion.div className="card" onClick={(e) => {
             if (contains) {
-                e.preventDefault();
-                setId(_id)
-                setHistory((previousHistory) => isHistory ? previousHistory.slice(0, index) : [...previousHistory, currentContainer])
+                if (screenWidth > 700) setIsExpanded(true)
+                else {
+                    e.preventDefault();
+                    setId(_id)
+                    setHistory((previousHistory) => isHistory ? previousHistory.slice(0, index) : [...previousHistory, currentContainer])
+                }
             }
     }}>          
         <p className="card-name">{name}</p>
