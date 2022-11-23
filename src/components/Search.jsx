@@ -11,8 +11,12 @@ const Search = ({addEvent, setHistory, setId, setCurrentContainer, currentContai
     useEffect(() => {
         setIsLoading(true)
         api.getSearch(search_query).then(data => {
+            console.log(data, "in search")
+            console.log(data[0].name, "name")
+            console.log(data[0].img, "img")
             setSearchResult(data)
         })
+        console.log(searchResult, "after")
         setIsLoading(false)
     }, [search_query])
 
@@ -22,17 +26,16 @@ const Search = ({addEvent, setHistory, setId, setCurrentContainer, currentContai
     <Link className="back-link" to="/" ><p className="history-item">Back</p></Link>
     <h1>"{search_query}" items:</h1>
     <div className='card-field'>
-    <div className="card-cont">
-        {searchResult.map((element, index) => {
-            return <>
+    
+        {searchResult.map((element) => {
+            return <div className="card-cont">
             <div className="card">
             <p className="card-name">{element.name}</p>
             <p className="card-desc">{element.description}</p>
-            <img alt="" className="card-image" src={`data:image/png;base64,${element.image}`}></img>
+            <img alt="" className="card-image" src={`data:image/png;base64,${element.img}`}></img>
             </div>
-            </>
+            </div>
         })}
-    </div>
     </div>
     </>
 }

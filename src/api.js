@@ -97,6 +97,13 @@ export const fetchContainerById = (container_id) => {
     return api.get(`/allitems`).then(({data}) => {
       let newdata = data.filter(x => x.name.toLowerCase().includes(string.toLowerCase()))
       return newdata
+    }).then(data => {
+      const newdata = [...data]
+      return Promise.all(newdata.map((x, index) => {
+        return api.get(`/images/${x.image}`).then(({data}) => {x.img=data.img; return x})
+      })).then(() => newdata)
+    }).then((data)=> {
+      return data
     })
   }
 
