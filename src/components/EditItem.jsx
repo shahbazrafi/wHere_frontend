@@ -3,7 +3,7 @@ import { Link, useParams, useNavigate } from "react-router-dom"
 import * as api from "../api"
 import { UserContext } from "../contexts"
 
-const EditItem = ({ addEvent, currentContainer}) => {
+const EditItem = ({ addEvent, currentContainer, setCurrentContainer}) => {
     const navigate = useNavigate()
 
     const {id} = useParams()
@@ -11,6 +11,7 @@ const EditItem = ({ addEvent, currentContainer}) => {
     const [getImageFile, setGetImageFile] = useState("")
     const [titleInput, setTitle] = useState("")
     const [parentId, setParentId] = useState("")
+    const [directory, setDirectory] = useState([])
     const [descInput, setDesc] = useState(""),
         {user, setUser} = useContext(UserContext)
     
@@ -23,6 +24,12 @@ const EditItem = ({ addEvent, currentContainer}) => {
         setIsLoading(false)
     }, [id])
 
+    useEffect(() => {
+        api.getDirectory().then(({data}) => {
+            setDirectory(data)
+        })
+    }, [])
+
     const handleSubmit = (e)=>{
         e.preventDefault()
         const formData = new FormData();
@@ -34,7 +41,7 @@ const EditItem = ({ addEvent, currentContainer}) => {
             navigate(-1)
             addEvent(user.name, new Date(), currentContainer.name, 'edited', titleInput)
         })
-        
+
     }
 
     if (isLoading) return <p>Loading</p>
@@ -52,7 +59,10 @@ const EditItem = ({ addEvent, currentContainer}) => {
     </div>
     <div>
         <label htmlFor="parent_id">Edit Parent ID</label>
-        <input type="text" id="parent_id" placeholder="New Parent ID" value={parentId} name="parent_id" onChange={(e) => {setParentId(e.target.value)}}/>
+        <select name="parent_id" id="parent_id" onChange={(e) => {setParentId(e.target.value); console.log(e.target.value)}}>
+            <option value={currentContainer.name}>No Change</option>
+            {directory.map(list => <option value={list._id}>{list.parent_name} / {list.name}</option>)}
+        </select>
     </div>
     <div>
         <input type="submit"/>

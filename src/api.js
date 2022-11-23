@@ -89,6 +89,10 @@ export const fetchContainerById = (container_id) => {
     })
   }
 
+  export const getDirectory = () => {
+    return api.get(`/containers`).then(data => data)
+  }
+
 
 
 
