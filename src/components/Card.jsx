@@ -7,7 +7,7 @@ import { useContext, useState } from 'react';
 import {motion } from 'framer-motion'
 import Carousel from './Carousel';
 
-const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, currentContainer, index, screenWidth, isHistory}) => {
+const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, currentContainer, index, cardIndex, screenWidth, isHistory}) => {
     const navigate = useNavigate(),
         { contains, name, parent_id, _id, image, description } = element,
         { user } = useContext(UserContext)
@@ -53,7 +53,7 @@ const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, curren
         {contains ? <motion.div className='editButton' whileHover={{scale: 2, zIndex: 50}}><AiFillEdit className="editIcon" onClick={()=> {
             navigate(`/edit/container/${_id}`)}}/></motion.div>
             : <motion.div className='editButton' whileHover={{scale: 2, zIndex: 50}}><AiFillEdit className="editIcon" onClick={()=> {
-                navigate(`/edit/item/${index}`)}}/></motion.div>}
+                navigate(`/edit/item/${cardIndex}`)}}/></motion.div>}
     </motion.div>
 }
 
