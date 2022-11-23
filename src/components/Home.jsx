@@ -32,8 +32,20 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
     if (isLoading) return <p className='loading'>Loading</p>
 
     return (
-        screenWidth > 750 ?
-            <Carousel currentContainer={currentContainer} show={screenWidth > 1655? 4: screenWidth > 1200? 3: 2} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer}/>:
+        screenWidth > 700 ?<>
+            {/* <div>
+                <ul>
+                    {history.map((x, index) =>
+                        <li onClick={(e) => {
+                            e.preventDefault();
+                            setId(x._id)
+                            setHistory((previousHistory) => previousHistory.slice(0, index))
+                                    }}>
+                        <Carousel currentContainer={currentContainer} show={screenWidth > 1655 ? 4 : screenWidth > 1200 ? 3 : 2} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} /></li>)}
+                </ul>
+            </div> */}
+            <Carousel currentContainer={currentContainer} show={screenWidth > 1655 ? 4 : screenWidth > 1200 ? 3 : 2} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} />
+        </> :
     <div>
     <ul className="history-list">
         {history.map((x, index) => <a className="history-item" key={x._id} href="" onClick={(e) => {
@@ -42,12 +54,10 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
             setHistory((previousHistory) => previousHistory.slice(0, index))
         }}><li key={x.index}>{x.name}</li></a>)}
     </ul>
-
-    
     <h1>{currentContainer.name}</h1>
         <motion.div layout className='card-field'>
             {currentContainer.contains.map((element, index) => {
-                return <motion.div initial={{ opacity: 0, translatex: 50, translateY: -20 }} animate={{ opacity: 1, translateY: 0, translateX: 0 }} transition={{ duration: 0.3, delay: index * 0.1}}> < Card element={element} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} index={index} /></motion.div>
+                return <motion.div initial={{ opacity: 0, translatex: 50, translateY: -20 }} animate={{ opacity: 1, translateY: 0, translateX: 0 }} transition={{ duration: 0.3, delay: index * 0.1}}> < Card element={element} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} index={index} /></motion.div>
             }
         )}
         {currentContainer.contains.length===0 ? <p>Please add an item.</p> : null}
