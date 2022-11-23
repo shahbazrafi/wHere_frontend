@@ -277,6 +277,9 @@ body {
 .carousel-content.show-4 > * {
   width: calc(100% / 4);
 }
+.selected-card {
+  border: 5px solid red;
+}
 
 
 

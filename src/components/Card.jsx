@@ -7,16 +7,17 @@ import { useContext, useState } from 'react';
 import {motion } from 'framer-motion'
 import Carousel from './Carousel';
 
-const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, currentContainer, index, cardIndex, screenWidth, isHistory}) => {
+const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, currentContainer, index, cardIndex, screenWidth, isHistory, selected, setSelected}) => {
     const navigate = useNavigate(),
         { contains, name, parent_id, _id, image, description } = element,
         { user } = useContext(UserContext)
 
     return <motion.div className="card-cont" key={_id} whileHover={{ scale: 1.1, zIndex: 50 }}>
-        <motion.div className="card" onClick={(e) => {
+        <motion.div className={`card ${selected===_id? `selected-card`: ``}`} onClick={(e) => {
             if (contains) {
                 e.preventDefault();
                 setId(_id)
+                setSelected(_id)
                 setHistory((previousHistory) => isHistory ? previousHistory.slice(0, index+1) : [...previousHistory, currentContainer])
             }
     }}>          
@@ -35,7 +36,6 @@ const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, curren
                     addEvent(user.name, new Date(), currentContainer.name, 'deleted', name )
                     alert(`${name} has been deleted.`)
                 })
-                
             }
             }}/></motion.div>
         : <motion.div className='deleteButton' whileHover={{scale: 2, zIndex: 50}} ><MdDeleteForever className="deleteIcon" onClick={()=> {

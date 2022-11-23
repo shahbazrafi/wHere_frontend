@@ -3,8 +3,9 @@ import Card from "./Card"
 import { motion, AnimatePresence } from "framer-motion"
 
 const Carousel = ({ i, currentContainer, addEvent, setHistory, setCurrentContainer, setId, show, screenWidth, isHistory}) => {
-    const [currentIndex, setCurrentIndex] = useState(0)
-    const [length, setLength] = useState(currentContainer.contains.length)
+    const [currentIndex, setCurrentIndex] = useState(0),
+        [length, setLength] = useState(currentContainer.contains.length),
+        [selected, setSelected] = useState('none')
     
     useEffect(() => {
         setLength(currentContainer.contains.length)
@@ -30,7 +31,7 @@ const Carousel = ({ i, currentContainer, addEvent, setHistory, setCurrentContain
             <div className={`carousel-content show-${show}`} style={{ transform: `translateX(-${currentIndex * (100 / show)}%)`}} >
                     {currentContainer.contains.map((element, index) => {
                         return <motion.div style={{'flex-grow': length>3? 1: 0}} initial={{ opacity: 0, translatex: 50, translateY: -20 }} animate={{ opacity: 1, translateY: 0, translateX: 0 }} transition={{ duration: 0.3, delay: index * 0.1 }} key={element._id + 'x'} >
-                            <Card element={element} addEvent={addEvent} setHistory={setHistory} screenWidth={screenWidth} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} index={i} cardIndex={index} isHistory={isHistory} />
+                            <Card element={element} addEvent={addEvent} setHistory={setHistory} screenWidth={screenWidth} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} index={i} cardIndex={index} isHistory={isHistory} selected={selected} setSelected={setSelected} />
                         </motion.div>
                     })}
             </div>
