@@ -3,7 +3,7 @@ import { Link, useParams, useNavigate } from "react-router-dom"
 import * as api from "../api"
 import { UserContext } from "../contexts"
 
-const EditItem = ({ addEvent, currentContainer, setCurrentContainer}) => {
+const EditItem = ({ addEvent, currentContainer}) => {
     const navigate = useNavigate()
 
     const {id} = useParams()
@@ -25,6 +25,7 @@ const EditItem = ({ addEvent, currentContainer, setCurrentContainer}) => {
     }, [id])
 
     useEffect(() => {
+        // console.log(currentContainer)
         api.getDirectory().then(({data}) => {
             setDirectory(data)
         })
@@ -43,9 +44,8 @@ const EditItem = ({ addEvent, currentContainer, setCurrentContainer}) => {
         })
 
     }
-
+    // if (currentContainer===undefined) return <p>Please go back to home as you have not selected a container to edit items.</p>
     if (isLoading) return <p>Loading</p>
-
     return <>
     <Link className="back-link" to="/" ><p className="history-item">Back</p></Link>
     <form onSubmit={handleSubmit} encType="multipart/form-data">

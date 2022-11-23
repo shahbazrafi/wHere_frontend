@@ -27,6 +27,9 @@ const EditContainer = ({addEvent, currentContainer}) => {
     }, [id])
 
     useEffect(() => {
+        const recursion = (id) => {
+            
+        }
         api.getDirectory().then(({data}) => {
             console.log(data)
             for (let i = data.length-1; i >= 0; i--){
