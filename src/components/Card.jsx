@@ -7,32 +7,18 @@ import { useContext, useState } from 'react';
 import {motion } from 'framer-motion'
 import Carousel from './Carousel';
 
-const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, currentContainer, index, screenWidth}) => {
+const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, currentContainer, index, screenWidth, isHistory}) => {
     const navigate = useNavigate(),
         { contains, name, parent_id, _id, image, description } = element,
-        { user } = useContext(UserContext),
-        [isExpanded, setIsExpanded] = useState(false)
+        { user } = useContext(UserContext)
 
-    return isExpanded ?  
-        <div className='nested-carousel'>
-            <div className="carousel-image">
-                <img className="card-image" alt="temp" src={`data:image/png;base64,${image}`} />
-            </div>
-            <div className='new-carousel' >
-                <Carousel currentContainer={element} show={screenWidth > 1655 ? 4 : screenWidth > 1200 ? 3 : 2} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} />
-            </div>
-        </div>
-    : <motion.div className="card-cont" key={_id} whileHover={{ scale: 1.1, zIndex: 50 }}>
+    return <motion.div className="card-cont" key={_id} whileHover={{ scale: 1.1, zIndex: 50 }}>
         <motion.div className="card" onClick={(e) => {
-        if (contains) {
-            if (screenWidth > 700) {
-                setIsExpanded(true)
-            } else {
+            if (contains) {
                 e.preventDefault();
-                setHistory((previousHistory) => [...previousHistory, currentContainer])
                 setId(_id)
+                setHistory((previousHistory) => isHistory ? previousHistory.slice(0, index) : [...previousHistory, currentContainer])
             }
-        }
     }}>          
         <p className="card-name">{name}</p>
         <p className="card-desc">{description}</p>
@@ -68,10 +54,7 @@ const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, curren
             navigate(`/edit/container/${_id}`)}}/></motion.div>
             : <motion.div className='editButton' whileHover={{scale: 2, zIndex: 50}}><AiFillEdit className="editIcon" onClick={()=> {
                 navigate(`/edit/item/${index}`)}}/></motion.div>}
-        
-        
     </motion.div>
-        
 }
 
 

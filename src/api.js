@@ -6,32 +6,25 @@ const api = axios.create({
   
 export const fetchContainerById = (container_id) => {
   return api.get(`containers/${container_id}`).then(({data}) => {
-    console.log(data, '<<< in api call')
       return data
     })
   }
 
   export const fetchItemById = (item_id) => {
     return api.get(`items/${item_id}`).then(({data}) => {
-      console.log(data, '<<< in api call')
         return data
       })
     }
     
 
   export const fetchUsers = () => {
-    return api.get(`users`).then(({data}) => {  
-      console.log(data)
+    return api.get(`users`).then(({data}) => {
       return data
     })
   };
 
   export const fetchImages = () => {
     return api.get(`images`).then(({data} ) => {
-
-      console.log(data)
-
-
       return data
 
 

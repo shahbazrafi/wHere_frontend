@@ -217,7 +217,6 @@ body {
 /* CAROUSEL */
 .carousel-container {
   width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   margin-top: 20px;
@@ -276,7 +275,7 @@ body {
 .carousel-content.show-4 > * {
   width: calc(100% / 4);
 }
-.nested-carousel {
+/* .nested-carousel {
   z-index: 200;
   width: 100%;
   position: absolute;
@@ -291,7 +290,7 @@ body {
 }
 .card-image {
   width: 100%;
-}
+} */
 
 
 /* CARDS */

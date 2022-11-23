@@ -12,11 +12,11 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
     const [isLoading, setIsLoading] = useState(true),
         { user, setUser } = useContext(UserContext),
         [screenWidth, setScreenWidth] = useState(window.innerWidth)
+    let key = 0;
 
     useEffect(() => {
         setIsLoading(true)
         api.fetchContainerById(id).then(data => {
-            console.log(data, '<<<data in home')
             setCurrentContainer(data)
             setIsLoading(false)
         })
@@ -33,18 +33,13 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
 
     return (
         screenWidth > 700 ?<>
-            {/* <div>
-                <ul>
-                    {history.map((x, index) =>
-                        <li onClick={(e) => {
-                            e.preventDefault();
-                            setId(x._id)
-                            setHistory((previousHistory) => previousHistory.slice(0, index))
-                                    }}>
-                        <Carousel currentContainer={currentContainer} show={screenWidth > 1655 ? 4 : screenWidth > 1200 ? 3 : 2} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} /></li>)}
-                </ul>
-            </div> */}
-            <Carousel currentContainer={currentContainer} show={screenWidth > 1655 ? 4 : screenWidth > 1200 ? 3 : 2} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} />
+            <div>
+                {history.map((x, index) =>{
+                    key++
+                    return <Carousel key={key} currentContainer={x} show={screenWidth > 1655 ? 4 : screenWidth > 1200 ? 3 : 2} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} isHistory={true} >
+                    </Carousel>})}
+            </div> 
+            <Carousel currentContainer={currentContainer} show={screenWidth > 1655 ? 4 : screenWidth > 1200 ? 3 : 2} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} isHistory={false} />
         </> :
     <div>
     <ul className="history-list">
