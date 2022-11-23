@@ -12,8 +12,8 @@ const Noticeboard = ({ events, setEvents }) => {
             setIsExpanded(state => !state)
         }
     let key = 0;
-    return <motion.div transition={{layout: {duration: 1.2, type: 'spring' }}} layout className="noticeboard" onClick={toggleExpand} >
-        {!isExpanded ? <motion.li layout='transition' className="event-item"><Event event={events[events.length-1]} /></motion.li>: <></>}
+    return <motion.div transition={{layout: {duration: 1.2, type: 'spring' }}} layout className="noticeboard" onClick={toggleExpand} whileHover={{ scale: 1.05 }}>
+        {!isExpanded ? <motion.li whileHover={{ scale: 1.01 }} layout='transition' className="event-item"><Event event={events[events.length-1]} /></motion.li>: <></>}
         {isExpanded && <motion.ul  layout className="event-list">
             {events.map((event, index) => {
                 key++;
@@ -21,13 +21,13 @@ const Noticeboard = ({ events, setEvents }) => {
                     initial={{ opacity: 0, translateX: -50, translateY: -50 }}
                     animate={{ opacity: 1, translateX: 0, translateY: 0 }}
                     transition={{duration: 0.2, delay: index * 0.07}}
-                    key={key} className="event-item">
+                    key={key} whileHover={{ scale: 1.025 }} className="event-item">
                     <Event event={event} />
                 </motion.li>
             })}
         </motion.ul>}
-        <motion.button layout='position' transition={{layout: {duration: 0.5, type: 'none'}}} >
-            {isExpanded ? <HiChevronDoubleUp className='expand-arrow'/> : <HiChevronDoubleDown className='expand-arrow'/>}
+        <motion.button layout='position' whileHover={{ scale: 1.4 }} transition={{layout: {duration: 0.5, type: 'none'}}} >
+            {isExpanded ? <HiChevronDoubleUp className='expand-arrow' /> : <HiChevronDoubleDown className='expand-arrow'/>}
         </motion.button >
     </motion.div>
 }
