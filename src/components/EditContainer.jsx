@@ -11,6 +11,7 @@ const EditContainer = ({addEvent, currentContainer}) => {
     const [titleInput, setTitle] = useState("")
     const [parentId, setParentId] = useState("")
     const [getImageFile, setGetImageFile] = useState("")
+    const [directory, setDirectory] = useState([])
     const [descInput, setDesc] = useState(""),
         {user, setUser} = useContext(UserContext)
 
@@ -24,6 +25,13 @@ const EditContainer = ({addEvent, currentContainer}) => {
             setIsLoading(false)
         })
     }, [id])
+
+    useEffect(() => {
+        api.getDirectory().then(({data}) => {
+            console.log(data)
+            setDirectory(data)
+        })
+    }, [])
 
     const handleSubmit = (e)=>{
         e.preventDefault()
@@ -53,7 +61,10 @@ const EditContainer = ({addEvent, currentContainer}) => {
     </div>
     <div>
         <label htmlFor="parent_id">Edit Parent ID</label>
-        <input type="text" id="parent_id" placeholder="New Parent ID" value={parentId} name="parent_id" onChange={(e) => {setParentId(e.target.value)}}/>
+        <select name="parent_id" id="parent_id" onChange={(e) => {setParentId(e.target.value); console.log(e.target.value)}}>
+            <option value={currentContainer.name}>No Change</option>
+            {directory.map(list => <option value={list._id}>{list.parent_name} / {list.name}</option>)}
+        </select>
     </div>
     <div>
         <input type="submit"/>
