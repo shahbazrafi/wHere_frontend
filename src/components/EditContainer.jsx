@@ -13,7 +13,7 @@ const EditContainer = ({addEvent, currentContainer}) => {
     const [getImageFile, setGetImageFile] = useState("")
     const [directory, setDirectory] = useState([])
     const [descInput, setDesc] = useState(""),
-        {user, setUser} = useContext(UserContext)
+        {user} = useContext(UserContext)
 
     useEffect(() => {
         setIsLoading(true)
@@ -27,9 +27,6 @@ const EditContainer = ({addEvent, currentContainer}) => {
     }, [id])
 
     useEffect(() => {
-        const recursion = (id) => {
-            
-        }
         api.getDirectory().then(({data}) => {
             console.log(data)
             for (let i = data.length-1; i >= 0; i--){
@@ -41,7 +38,7 @@ const EditContainer = ({addEvent, currentContainer}) => {
             }
             setDirectory(data)
         })
-    }, [])
+    }, [id])
 
     const handleSubmit = (e)=>{
         e.preventDefault()

@@ -11,12 +11,8 @@ const Search = ({addEvent, setHistory, setId, setCurrentContainer, currentContai
     useEffect(() => {
         setIsLoading(true)
         api.getSearch(search_query).then(data => {
-            console.log(data, "in search")
-            console.log(data[0].name, "name")
-            console.log(data[0].img, "img")
             setSearchResult(data)
         })
-        console.log(searchResult, "after")
         setIsLoading(false)
     }, [search_query])
 
@@ -27,7 +23,9 @@ const Search = ({addEvent, setHistory, setId, setCurrentContainer, currentContai
     <h1>"{search_query}" items:</h1>
     <div className='card-field'>
     
-        {searchResult.map((element) => {
+        {isLoading ? <p>Loading...</p> :
+        
+        searchResult.map((element) => {
             return <div className="card-cont">
             <div className="card">
             <p className="card-name">{element.name}</p>
