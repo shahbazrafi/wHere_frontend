@@ -95,9 +95,7 @@ export const fetchContainerById = (container_id) => {
 
   export const getSearch = (string) => {
     return api.get(`/allitems`).then(({data}) => {
-      console.log(data)
       let newdata = data.filter(x => x.name.toLowerCase().includes(string.toLowerCase()))
-      console.log(newdata)
       return newdata
     })
   }
