@@ -53,7 +53,7 @@ return <div className="loginform">
           <fieldset>
             <br />
             <legend className="signtxt">Sign In</legend>
-            <p>Sign in to your account</p>
+            <p>Sign in to your account!</p>
             <input className="input" placeholder="username" value={username} type="text" id="username" name="username" onChange={handleUsername}/>
               <input className="input" placeholder="password" type="password" id="password" name="password" onChange={handlePassword} />
           </fieldset>
@@ -62,5 +62,5 @@ return <div className="loginform">
       </div>
 }
 
-
+//comment
 export default LoginRegister
