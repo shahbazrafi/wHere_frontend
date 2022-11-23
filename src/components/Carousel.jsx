@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import Card from "./Card"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 
 const Carousel = ({ i, currentContainer, addEvent, setHistory, setCurrentContainer, setId, show, screenWidth, isHistory}) => {
     const [currentIndex, setCurrentIndex] = useState(0)
