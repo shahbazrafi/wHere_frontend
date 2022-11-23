@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const LoginRegister = ({ usersArray, setUsersArray, addEvent })=>{
   const navigate = useNavigate();
 
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -38,13 +38,15 @@ const handleSubmit = (e)=>{
 
   e.preventDefault()
 
+
   for (let i = 0; i < usersArray.length; i++) {
     if(usersArray[i].name===username && usersArray[i].password===password){
 
-      console.log("username", username)
+   
       setUser(usersArray[i])
+      addEvent(user.name, new Date(), 'the app', 'logged', ' in')
       navigate("/")
-    }
+    } 
   }
 }
   
