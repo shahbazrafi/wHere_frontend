@@ -23,9 +23,9 @@ const Carousel = ({ i, currentContainer, addEvent, setHistory, setCurrentContain
     return (<div className="carousel-container">
         <div className="carousel-wrapper">
         {currentIndex > 0 &&
-        <button onClick={prev} className="left-arrow">
+        <motion.button whileHover={{scale: 1.4}} onClick={prev} className="left-arrow">
             &lt;
-        </button>}
+        </motion.button>}
         <div className="carousel-content-wrapper">
             <div className={`carousel-content show-${show}`} style={{ transform: `translateX(-${currentIndex * (100 / show)}%)` }} >
                     {currentContainer.contains.map((element, index) => {
@@ -35,9 +35,9 @@ const Carousel = ({ i, currentContainer, addEvent, setHistory, setCurrentContain
                     })}
             </div>
                 {currentIndex < (length - show) &&
-                    <button onClick={next} className="right-arrow">
+                    <motion.button whileHover={{scale: 1.4}} onClick={next} className="right-arrow">
                         &gt;
-                    </button>}
+                    </motion.button>}
         </div>
     </div>
 </div>

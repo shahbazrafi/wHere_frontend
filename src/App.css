@@ -234,12 +234,14 @@ body {
   width: 95%;
   height: 100%;
   margin: auto;
+  padding-left: 15px;
 }
 .carousel-content {
   display: flex;
   transition: all 250ms linear;
   -ms-overflow-style: none;
   scrollbar-width: none; 
+  
 }
 .carousel-content::-webkit-scrollbar, .carousel-content::-webkit-scrollbar {
   display: none;
@@ -247,7 +249,7 @@ body {
 .carousel-content > * {
   width: 100%;
   flex-shrink: 0;
-  flex-grow: 1;
+  justify-content: center;
   padding: 5px;
   padding-top: 10px;
 }
@@ -277,22 +279,6 @@ body {
 .carousel-content.show-4 > * {
   width: calc(100% / 4);
 }
-/* .nested-carousel {
-  z-index: 200;
-  width: 100%;
-  position: absolute;
-}
-.new-carousel {
-  transform: translateY(5%);
-  border: 3px solid black;
-  height: 400px;
-}
-.carousel-image {
-  width: 350px;
-}
-.card-image {
-  width: 100%;
-} */
 
 
 /* CARDS */
