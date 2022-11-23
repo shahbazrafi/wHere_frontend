@@ -42,6 +42,9 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
             {isLoading ? <p className='loading'>Loading</p> : null }
             {currentContainer.contains.length===0 && !isLoading? <p>Please add an item.</p> :
             <Carousel currentContainer={currentContainer} show={screenWidth > 1655 ? 4 : screenWidth > 1200 ? 3 : 2} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} isHistory={false} />}
+        <motion.div className='addIcon-cont'>
+            <Link to="/add" ><BsPlusSquareFill className="addIcon" /></Link>
+        </motion.div>
         </> :
     <div>
     <ul className="history-list">
