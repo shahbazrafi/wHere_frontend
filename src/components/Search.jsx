@@ -27,6 +27,7 @@ const Search = ({addEvent, setHistory, setId, setCurrentContainer, currentContai
         
         searchResult.map((element) => {
             return <div className="card-cont">
+            <p>{element.parent_id}:</p>
             <div className="card">
             <p className="card-name">{element.name}</p>
             <p className="card-desc">{element.description}</p>
