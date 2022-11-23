@@ -41,7 +41,7 @@ const EditItem = ({ addEvent, currentContainer}) => {
 
     return <>
     <Link className="back-link" to="/" ><p className="history-item">Back</p></Link>
-    <form onSubmit={handleSubmit} encType="multipart/form-data">
+    <form onSubmit={handleSubmit} encType="multipart/form-data" className="upload-form">
     <div>
         <label htmlFor="name">Edit title</label>
         <input type="text" id="name" placeholder="Name" value={titleInput} name="name" required onChange={(e) => {setTitle(e.target.value)}}/>
@@ -52,10 +52,10 @@ const EditItem = ({ addEvent, currentContainer}) => {
     </div>
     <div>
         <label htmlFor="parent_id">Edit Parent ID</label>
-        <input type="text" id="parent_id" placeholder="New Parent ID" value={parentId} name="parent_id" onChange={(e) => {setParentId(e.target.value)}}/>
+        <input type="text" id="parent_id" placeholder="New Parent ID" value={parentId} name="parent_id" className="id-field" onChange={(e) => {setParentId(e.target.value)}}/>
     </div>
     <div>
-        <input type="submit"/>
+        <input type="submit" id="submit"/>
     </div>
     </form>
     <br></br>

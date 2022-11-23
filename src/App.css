@@ -304,6 +304,7 @@ body {
   text-align: center;
   background-color: var(--text-background);
   height: 15%;
+  line-height: 2.5;
 }
 .card-desc {
   position: absolute;
@@ -312,6 +313,7 @@ body {
   text-align: center;
   background-color: var(--text-background);
   height: 15%;
+  line-height: 2.5;
 }
 .addIcon-cont {
   position: sticky;
@@ -430,8 +432,16 @@ body {
   padding-left: 5px;
 }
 
-.upload-form > div > #image, #submit {
+.upload-form > div > #image {
   padding: 5px;
+}
+
+.upload-form > div > #submit {
+  width: 160px;
+  height: 32px;
+  margin-top: 16px;
+  border-radius: 8px;
+  font-size: 1.2rem;
 }
 
 .preview-image {
@@ -440,4 +450,8 @@ body {
   width: 90%;
   max-width: 640px;
   overflow: hidden;
+}
+
+#parent_id {
+  width: 200px;
 }
