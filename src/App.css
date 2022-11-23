@@ -21,7 +21,7 @@
 
 .App {
   text-align: center;
-  background: linear-gradient(to right, white, mediumslateblue);
+  background: linear-gradient(to right, rgb(238, 238, 238), rgb(228, 228, 228));
   min-height: 100vh;
 }
 
@@ -58,7 +58,7 @@ header {
 
 .profile{
   grid-column: 3/4;
-  text-align: right;
+  margin-right: -600px;
   transform: translateX(50%);
   animation: profile-load 200ms ease-in-out 450ms;
   animation-fill-mode: forwards;
@@ -83,7 +83,7 @@ header {
 
 .logo{
   grid-column: 2/3;
-  text-align: left;
+  margin-left: 50px;
   transform: translateX(-50%);
   animation: logo-load 200ms ease-in-out 450ms;
   animation-fill-mode: forwards;
@@ -135,6 +135,44 @@ body {
 
 .header-link {
   color: white;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+.input {
+  display: grid;
+  margin: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 30px;
+  padding: 10px;
+  padding-left:20px;
+  padding-right:20px;
+  font-size:20px;
+}
+
+.loginform {
+  border:1px solid rgb(186, 177, 177);
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:200px;
+  padding: 20px;
+  border-radius: 30px;
+  background-color:rgb(210, 213, 231);
+  box-shadow: 5px 5px rgba(0, 0, 255, .05);
+  max-width: 500px;
+}
+
+.signtxt {
+  font-size: 30px;
+  font-weight: bold;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 /* NOTICEBOARD */
@@ -189,6 +227,14 @@ body {
   }
   .profiles-cont p {
     font-size: 1rem;
+  }
+  .profile {
+    text-align: right;
+    margin-right: 0px;
+  }
+  .logo {
+    text-align: left;
+    margin-left: 0px;
   }
 }
 
@@ -438,7 +484,7 @@ body {
 }
 
 .upload-form > div > #image, #submit {
-  padding: 5px;
+  padding: 5px;  
 }
 
 .preview-image {
