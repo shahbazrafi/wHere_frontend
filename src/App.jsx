@@ -11,6 +11,7 @@ import EditContainer from './components/EditContainer';
 import Login from './components/Login';
 import Noticeboard from './components/Noticeboard';
 import EditItem from './components/EditItem'
+import LoginRegister from './components/LoginRegister'
 
 function App() {
   const [currentContainer, setCurrentContainer] = useState({ "name": "All", "contains": [] }),
@@ -21,6 +22,9 @@ function App() {
     [search, setSearch] = useState(""),
     [events, setEvents] = useState([]),
     addEvent = (user, time, location, type, subject) => setEvents(currEvents => [...currEvents, {user, time, location, type, subject}]) 
+
+            
+    //<Login usersArray={usersArray} setUsersArray={setUsersArray} addEvent={addEvent} />
 
   return (
     <UserContext.Provider value={{user, setUser}} >
@@ -38,7 +42,8 @@ function App() {
           <Route path='/edit/container/:id' element={<EditContainer currentContainer={currentContainer} addEvent={addEvent} />}></Route>
           <Route path='/edit/item/:id' element={<EditItem currentContainer={currentContainer} addEvent={addEvent} />}></Route>
         </Routes>
-        : <Login usersArray={usersArray} setUsersArray={setUsersArray} addEvent={addEvent} />}
+        : <LoginRegister usersArray={usersArray} setUsersArray={setUsersArray} addEvent={addEvent}/>}
+
       </div>
       </BrowserRouter>
     </UserContext.Provider>
