@@ -217,6 +217,7 @@ body {
 /* CAROUSEL */
 .carousel-container {
   width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   margin-top: 20px;
@@ -225,6 +226,7 @@ body {
   display: flex;
   width: 100%;
   position: relative;
+  height: 100%;
 }
 .carousel-content-wrapper {
   overflow: hidden;
@@ -278,7 +280,17 @@ body {
   z-index: 200;
   width: 100%;
   position: absolute;
-  bottom: -200%;
+}
+.new-carousel {
+  transform: translateY(5%);
+  border: 3px solid black;
+  height: 400px;
+}
+.carousel-image {
+  width: 350px;
+}
+.card-image {
+  width: 100%;
 }
 
 
