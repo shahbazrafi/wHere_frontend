@@ -5,8 +5,9 @@ import * as api from "../api"
 import { UserContext } from '../contexts';
 import { useContext } from 'react';
 import {motion } from 'framer-motion'
+import Carousel from './Carousel';
 
-const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, currentContainer, index}) => {
+const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, currentContainer, index, screenWidth}) => {
     const navigate = useNavigate(),
         { contains, name, parent_id, _id, image, description } = element,
         {user} = useContext(UserContext)
@@ -14,9 +15,14 @@ const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, curren
     return <motion.div className="card-cont" key={_id} whileHover={{scale: 1.1, zIndex: 50}}>
     <motion.div className="card" onClick={(e) => {
         if (contains) {
-            e.preventDefault();
-            setHistory((previousHistory) => [...previousHistory, currentContainer])
-            setId(_id)
+            if (screenWidth > 700) {
+                console.log('returning')
+                return <div className='nested-carousel' ><Carousel currentContainer={element} show={screenWidth > 1655 ? 4 : screenWidth > 1200 ? 3 : 2} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} /></div>
+            } else {
+                e.preventDefault();
+                setHistory((previousHistory) => [...previousHistory, currentContainer])
+                setId(_id)
+            }
         }
     }}>          
         <p className="card-name">{name}</p>

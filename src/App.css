@@ -274,6 +274,12 @@ body {
 .carousel-content.show-4 > * {
   width: calc(100% / 4);
 }
+.nested-carousel {
+  z-index: 200;
+  width: 100%;
+  position: absolute;
+  bottom: -200%;
+}
 
 
 /* CARDS */
