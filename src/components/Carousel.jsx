@@ -27,9 +27,9 @@ const Carousel = ({ i, currentContainer, addEvent, setHistory, setCurrentContain
             &lt;
         </button>}
         <div className="carousel-content-wrapper">
-            <div className={`carousel-content show-${show}`} style={{ transform: `translateX(-${currentIndex * (100 / show)}%)` }} >
+            <div className={`carousel-content show-${show}`} style={{ transform: `translateX(-${currentIndex * (100 / show)}%)`}} >
                     {currentContainer.contains.map((element, index) => {
-                        return <motion.div initial={{ opacity: 0, translatex: 50, translateY: -20 }} animate={{ opacity: 1, translateY: 0, translateX: 0 }} transition={{ duration: 0.3, delay: index * 0.1 }} key={element._id + 'x'} >
+                        return <motion.div style={{'flex-grow': length>3? 1: 0}} initial={{ opacity: 0, translatex: 50, translateY: -20 }} animate={{ opacity: 1, translateY: 0, translateX: 0 }} transition={{ duration: 0.3, delay: index * 0.1 }} key={element._id + 'x'} >
                             <Card element={element} addEvent={addEvent} setHistory={setHistory} screenWidth={screenWidth} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} index={i} cardIndex={index} isHistory={isHistory} />
                         </motion.div>
                     })}
