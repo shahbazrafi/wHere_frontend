@@ -17,15 +17,16 @@ const EditItem = ({ addEvent, currentContainer}) => {
     
     useEffect(() => {
         setIsLoading(true)
-        setTitle(currentContainer.contains[id].name)
-        setDesc(currentContainer.contains[id].description)
-        setGetImageFile(currentContainer.contains[id].image)
-        setParentId(currentContainer._id)
+        if (currentContainer.contains.length!==0) {
+            setTitle(currentContainer.contains[id].name)
+            setDesc(currentContainer.contains[id].description)
+            setGetImageFile(currentContainer.contains[id].image)
+            setParentId(currentContainer._id)
+        }
         setIsLoading(false)
     }, [id])
 
     useEffect(() => {
-        // console.log(currentContainer)
         api.getDirectory().then(({data}) => {
             setDirectory(data)
         })
@@ -44,7 +45,7 @@ const EditItem = ({ addEvent, currentContainer}) => {
         })
 
     }
-    // if (currentContainer===undefined) return <p>Please go back to home as you have not selected a container to edit items.</p>
+    if (currentContainer.contains.length===0) return <p>Please go back to home as you have not selected a container to edit items.</p>
     if (isLoading) return <p>Loading</p>
     return <>
     <Link className="back-link" to="/" ><p className="history-item">Back</p></Link>
