@@ -85,27 +85,11 @@ header {
 .logo{
   grid-column: 2/3;
   margin-left: 50px;
-  transform: translateX(-50%);
-  animation: logo-load 200ms ease-in-out 450ms;
-  animation-fill-mode: forwards;
 }
-@keyframes logo-load {
-  0% {
-    transform: translateX(-100%);
-  }
-  80% {
-    transform: translateX(15%);
-  }
-  90% {
-    transform: translateX(-10%);
-  }
-  95% {
-    transform: translateX(5%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
+.logo img {
+  height: 8vh;
 }
+
 
 /* LOG IN PAGE */
 .profiles-cont p{

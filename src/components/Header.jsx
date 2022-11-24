@@ -1,7 +1,8 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../contexts';
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
+import logo_img from '../imgs/letters.gif'
 
 const Header = ({addEvent}) => {
     const {user, setUser} = useContext(UserContext)
@@ -9,7 +10,7 @@ const Header = ({addEvent}) => {
     return (
         <header>
         <motion.div layout className='logo' >
-            <a href="/" className = "header-link"><motion.p whileHover={{scale: 1.2, translateX: 60}}>wHere?</motion.p></a>
+            <a href="/" className = "header-link"><img src={logo_img} alt='wHere logo' /></a>
         </motion.div>
         <motion.div  className='profile'>
             {user.name ? 
