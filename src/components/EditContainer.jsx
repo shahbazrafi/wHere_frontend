@@ -28,12 +28,15 @@ const EditContainer = ({addEvent, currentContainer}) => {
 
     useEffect(() => {
         api.getDirectory().then(({data}) => {
-            console.log(data)
             for (let i = data.length-1; i >= 0; i--){
-                if (data[i].parent_id===id){
-                    console.log("spliced", data[i])
-                    data.splice(i,1)
-                    
+                if (data[i].parent_id!=="") {
+                    for (let j = 0; j < data[i].parents_array.length; j++){
+                        if (data[i].parents_array[j]===id){
+                            console.log("spliced", data[i].name)
+                            data.splice(i,1)
+                            break;
+                        }
+                    }
                 }
             }
             setDirectory(data)
