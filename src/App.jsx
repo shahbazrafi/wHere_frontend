@@ -14,13 +14,16 @@ import EditItem from './components/EditItem'
 import LoginRegister from './components/LoginRegister'
 
 function App() {
-  const [currentContainer, setCurrentContainer] = useState({ "name": "All", "contains": [] }),
+  const eventStartingData = [{ name: 'Cam', time: new Date(), location: 'bedroom', type: 'added an item', subject: 'hairbrush' },
+    { name: 'Sasja', time: new Date(), location: 'bathroom', type: 'deleted an item', subject: 'towel' },
+    { name: 'Nathanial', time: new Date(), location: 'garden', type: 'moved an object', subject: 'rake' }],
+    [currentContainer, setCurrentContainer] = useState({ "name": "All", "contains": [] }),
     [id, setId] = useState('6374f23e0318fa7c71b095ed'),
     [history, setHistory] = useState([]),
     [usersArray, setUsersArray] = useState([]),
     [user, setUser] = useState({}),
     [search, setSearch] = useState(""),
-    [events, setEvents] = useState([]),
+    [events, setEvents] = useState(eventStartingData),
     addEvent = (user, time, location, type, subject) => setEvents(currEvents => [...currEvents, {user, time, location, type, subject}]) 
 
             
