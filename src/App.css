@@ -12,7 +12,7 @@
   font-family: sans-serif;
   box-sizing: border-box;
   --text-background: rgba(0, 0, 0, 0.5);
-  --dark: rgb(36, 30, 70);
+  --dark: #241E46;
   --box-shadows: rgba(36, 21, 126, 0.7);
   --light-tone: rgb(192, 227, 248);
   -ms-overflow-style: none;  
@@ -88,6 +88,7 @@ header {
 }
 .logo img {
   height: 8vh;
+  width: 150px;
 }
 
 
