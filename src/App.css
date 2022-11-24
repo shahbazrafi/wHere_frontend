@@ -88,7 +88,8 @@ header {
 }
 .logo img {
   height: 8vh;
-  width: 150px;
+  width: 200px;
+  object-fit: cover;
 }
 
 
