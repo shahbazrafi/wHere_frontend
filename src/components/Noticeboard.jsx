@@ -13,7 +13,7 @@ const Noticeboard = ({ events, setEvents }) => {
         }
     let key = 0;
     return <motion.div transition={{layout: {duration: 1.2, type: 'spring' }}} layout initial={{opacity: 0, translateY: -50}} animate={{opacity: 1, translateY: 0}} className="noticeboard" onClick={toggleExpand} whileHover={{ scale: 1.05 }}>
-        {!isExpanded ? <motion.li whileHover={{ scale: 1.01 }} layout='transition' className="event-item"><Event event={events[events.length-1]} /></motion.li>: <></>}
+        {!isExpanded ? <motion.li whileHover={{ scale: 1.02 }} layout='transition' className="event-item"><Event event={events[events.length-1]} /></motion.li>: <></>}
         {isExpanded && <motion.ul  layout className="event-list">
             {events.map((event, index) => {
                 key++;
