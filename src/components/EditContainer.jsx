@@ -57,29 +57,22 @@ const EditContainer = ({addEvent, currentContainer}) => {
 
     return <>
     <Link className="back-link" to="/" ><p className="history-item">Back</p></Link>
-    <form onSubmit={handleSubmit} encType="multipart/form-data">
-    <div>
-        <label htmlFor="name">Edit title</label>
-        <input type="text" id="name" placeholder="Name" value={titleInput} name="name" required onChange={(e) => {setTitle(e.target.value)}}/>
-    </div>
-    <div>
-        <label htmlFor="desc">Edit description</label>
-        <input type="text" id="desc" placeholder="Description" value={descInput} name="desc" onChange={(e) => {setDesc(e.target.value)}}/>
-    </div>
-    <div>
-        <label htmlFor="parent_id">Edit Parent ID</label>
-        <select name="parent_id" id="parent_id" onChange={(e) => {setParentId(e.target.value); console.log(e.target.value)}}>
-            <option value={currentContainer.name}>No Change</option>
-            {directory.map(list => <option value={list._id}>{list.parent_name} / {list.name}</option>)}
-        </select>
-    </div>
-    <div>
-        <input type="submit"/>
-    </div>
+    <form className="form" onSubmit={handleSubmit} encType="multipart/form-data">
+        <div className="formcontainer">
+            <label htmlFor="name">Edit name:</label>
+            <input className="input" type="text" id="name" placeholder="Name" value={titleInput} name="name" required onChange={(e) => {setTitle(e.target.value)}}/>
+            <label htmlFor="desc">Edit description:</label>
+            <input className="input" type="text" id="desc" placeholder="Description" value={descInput} name="desc" onChange={(e) => {setDesc(e.target.value)}}/>
+            <label htmlFor="parent_id">Edit Parent ID:</label>
+            <select name="parent_id" id="parent_id" onChange={(e) => {setParentId(e.target.value); console.log(e.target.value)}}>
+                <option value={currentContainer.name}>No Change</option>
+                {directory.map(list => <option value={list._id}>{list.parent_name} / {list.name}</option>)}
+            </select>
+        </div>
+        <input className="submitbutton" type="submit"/>
     </form>
     <br></br>
     <p><strong>Preview:</strong></p>
-    <p>Parent ID: {parentId}</p>
     <div className="card-field">
     <div className="card-cont">
     <div className="card">

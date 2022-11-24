@@ -51,7 +51,7 @@ return <div className="loginform">
             <input className="input" placeholder="username" value={username} type="text" id="username" name="username" onChange={handleUsername}/>
               <input className="input" placeholder="password" type="password" id="password" name="password" onChange={handlePassword} />
           </fieldset>
-          <button id="submit" type="submit">Submit</button>
+          <button className="submitbutton" id="submit" type="submit">Submit</button>
         </form>
       </div>
 }

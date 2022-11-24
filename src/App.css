@@ -213,32 +213,6 @@ select:focus {
   height: 25px;
   cursor: pointer;
 }
-@media screen and (max-width: 640px) {
-  .event-item, #latest-event{
-    font-size : 0.8rem;
-  }
-  .profiles-cont p {
-    font-size: 2rem;
-  }
-}
-@media screen and (max-width: 460px) {
-  .event-item, #latest-event{
-    font-size : 0.6rem;
-  }
-  .profiles-cont p {
-    font-size: 1rem;
-  }
-  .profile {
-    text-align: right;
-    margin-right: 0px;
-  }
-  .logo {
-    text-align: left;
-    margin-left: 0px;
-  }
-}
-
-
 /* SEARCH */
 .search {
   position: relative;
@@ -327,8 +301,6 @@ select:focus {
   border: 5px solid white;
   box-shadow: 15px 15px 0 0 black;
 }
-
-
 
 /* CARDS */
 .card-field {
@@ -467,6 +439,60 @@ select:focus {
   margin: 10px;
 }
 
+.form {
+  border:1px solid rgb(186, 177, 177);
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  border-radius: 30px;
+  background-color:rgb(210, 213, 231);
+  box-shadow: 5px 5px rgba(0, 0, 255, .05);
+}
+.formcontainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.input {
+  display: grid;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 30px;
+  width: 80%;
+  font-size: 20px;
+}
+
+label {
+  font-size:30px;
+  margin-top:auto;
+  margin-bottom: auto;
+  text-align: left;
+  margin-left: 100px;
+}
+
+select {
+  display: grid;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 30px;
+  width: 90%;
+  font-size: 20px;
+}
+
+.submitbutton {
+  background: rgb(112, 112, 112);
+  padding: 10px;
+  border-radius: 50px;
+  margin: 10px;
+  width: 30%;
+  height: 60px;
+  border: 1px solid black;
+  box-shadow: 5px 5px rgba(0, 0, 255, .05);
+  font-size: 25px;
+  color: white;
+}
+
 .upload-form {
   margin: 10px;
 }
@@ -494,4 +520,83 @@ select:focus {
   width: 90%;
   max-width: 640px;
   overflow: hidden;
+}
+
+@media screen and (max-width: 640px) {
+  .event-item, #latest-event{
+    font-size : 0.8rem;
+  }
+  .profiles-cont p {
+    font-size: 2rem;
+  }
+  label {
+    font-size:25px;
+    margin-top:auto;
+    margin-bottom: auto;
+    text-align: left;
+    margin-left: 0px;
+  }
+  .form {
+    width: 60%;
+  }
+
+  .submitbutton {
+    padding: 10px;
+    margin: 10px;
+    width: 50%;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .input {
+    display: grid;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 30px;
+    width: 80%;
+    font-size: 20px;
+  }
+
+  select {
+    display: grid;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 30px;
+    width: 100%;
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 460px) {
+  .event-item, #latest-event{
+    font-size : 0.6rem;
+  }
+  .profiles-cont p {
+    font-size: 1rem;
+  }
+  .profile {
+    text-align: right;
+    margin-right: 0px;
+  }
+  .logo {
+    text-align: left;
+    margin-left: 0px;
+  }
+  label {
+  font-size:24px;
+  margin-top:auto;
+  margin-bottom: auto;
+  text-align: left;
+  margin-left: 0px;
+  }
+  .form {
+  width: 85%;
+  }
+  select {
+    display: grid;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 30px;
+    width: 100%;
+    font-size: 20px;
+  }
 }
