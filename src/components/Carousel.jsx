@@ -2,10 +2,9 @@ import { useState, useEffect } from "react"
 import Card from "./Card"
 import { motion, AnimatePresence } from "framer-motion"
 
-const Carousel = ({ i, currentContainer, addEvent, setHistory, setCurrentContainer, setId, show, screenWidth, isHistory}) => {
+const Carousel = ({ i, currentContainer, addEvent, setHistory, setCurrentContainer, setId, show, screenWidth, isHistory, selected, setSelected}) => {
     const [currentIndex, setCurrentIndex] = useState(0),
-        [length, setLength] = useState(currentContainer.contains.length),
-        [selected, setSelected] = useState('none')
+        [length, setLength] = useState(currentContainer.contains.length)
     
     useEffect(() => {
         setLength(currentContainer.contains.length)

@@ -11,7 +11,8 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
     
     const [isLoading, setIsLoading] = useState(true),
         { user, setUser } = useContext(UserContext),
-        [screenWidth, setScreenWidth] = useState(window.innerWidth)
+        [screenWidth, setScreenWidth] = useState(window.innerWidth),
+        [selected, setSelected] = useState('none')
     let key = 0;
 
     useEffect(() => {
@@ -36,12 +37,12 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
             <div>
                 {history.map((x, index) =>{
                     key++
-                    return <Carousel key={key} currentContainer={x} i={index} show={screenWidth > 1655 ? 4 : screenWidth > 1200 ? 3 : 2} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} isHistory={true} >
+                    return <Carousel key={key} currentContainer={x} i={index} show={screenWidth > 1655 ? 4 : screenWidth > 1200 ? 3 : 2} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} isHistory={true} selected={selected} setSelected={setSelected} >
                     </Carousel>})}
             </div> 
             {isLoading ? <p className='loading'>Loading</p> : null }
             {!currentContainer.contains.length && !isLoading? <p>Please add an item.</p> :
-            <Carousel currentContainer={currentContainer} show={screenWidth > 1655 ? 4 : screenWidth > 1200 ? 3 : 2} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} isHistory={false} />}
+            <Carousel currentContainer={currentContainer} show={screenWidth > 1655 ? 4 : screenWidth > 1200 ? 3 : 2} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} isHistory={false} selected={selected} setSelected={setSelected} />}
         <motion.div className='addIcon-cont'>
             <Link to="/add" ><BsPlusSquareFill className="addIcon" /></Link>
         </motion.div>
@@ -58,7 +59,7 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
     {isLoading ? <p className='loading'>Loading</p> :
         <motion.div layout className='card-field'>
             {currentContainer.contains.map((element, index) => {
-                return <motion.div initial={{ opacity: 0, translatex: 50, translateY: -20 }} animate={{ opacity: 1, translateY: 0, translateX: 0 }} transition={{ duration: 0.3, delay: index * 0.1}}> < Card element={element} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} index={index} /></motion.div>
+                return <motion.div initial={{ opacity: 0, translatex: 50, translateY: -20 }} animate={{ opacity: 1, translateY: 0, translateX: 0 }} transition={{ duration: 0.3, delay: index * 0.1}}> < Card element={element} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} index={index} selected={selected} setSelected={setSelected} /></motion.div>
             }
         )}
         {!currentContainer.contains.length ? <p>Please add an item.</p> : null}
