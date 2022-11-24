@@ -581,6 +581,9 @@ select {
     width: 100%;
     font-size: 20px;
   }
+  .profile{
+    margin-right: 50px;
+  }
 }
 @media screen and (max-width: 880px) {
   .event-item, #latest-event{
