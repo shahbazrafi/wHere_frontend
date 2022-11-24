@@ -290,6 +290,16 @@ select:focus {
 .right-arrow {
   right: 24px;
 }
+.left-arrow:hover, .right-arrow:hover {
+  background-color: var(--dark);
+  color: var(--light-tone);
+  border: 3px solid var(--light-tone);
+  box-shadow: 3px 3px black;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 2rem;
+}
 .carousel-content.show-2 > * {
   width: 50%;
 }
