@@ -314,6 +314,12 @@ select:focus {
 .right-arrow {
   right: 24px;
 }
+.left-arrow:hover, .right-arrow:hover {
+  background-color: var(--dark);
+  color: var(--light-tone);
+  border: 5px solid var(--light-tone);
+  box-shadow: 3px 3px var(--dark);
+}
 .carousel-content.show-2 > * {
   width: 50%;
 }
