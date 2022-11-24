@@ -59,7 +59,7 @@ const Home = ({ currentContainer, setCurrentContainer, id, setId, history, setHi
     {isLoading ? <p className='loading'>Loading</p> :
         <motion.div layout className='card-field'>
             {currentContainer.contains.map((element, index) => {
-                return <motion.div initial={{ opacity: 0, translatex: 50, translateY: -20 }} animate={{ opacity: 1, translateY: 0, translateX: 0 }} transition={{ duration: 0.3, delay: index * 0.1}}> < Card element={element} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} index={index} selected={selected} setSelected={setSelected} /></motion.div>
+                return <motion.div initial={{ opacity: 0, translatex: 50, translateY: -20 }} animate={{ opacity: 1, translateY: 0, translateX: 0 }} transition={{ duration: 0.3, delay: index * 0.1}}> < Card element={element} screenWidth={screenWidth} addEvent={addEvent} setHistory={setHistory} setId={setId} setCurrentContainer={setCurrentContainer} currentContainer={currentContainer} cardIndex={index} selected={selected} setSelected={setSelected} /></motion.div>
             }
         )}
         {!currentContainer.contains.length ? <p>Please add an item.</p> : null}
