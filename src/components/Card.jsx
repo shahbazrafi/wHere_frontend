@@ -53,7 +53,11 @@ const Card = ({element, addEvent, setHistory, setId, setCurrentContainer, curren
         {contains ? <motion.div className='editButton' whileHover={{scale: 2, zIndex: 50}}><AiFillEdit className="editIcon" onClick={()=> {
             navigate(`/edit/container/${_id}`)}}/></motion.div>
             : <motion.div className='editButton' whileHover={{scale: 2, zIndex: 50}}><AiFillEdit className="editIcon" onClick={()=> {
-                navigate(`/edit/item/${cardIndex}`)}}/></motion.div>}
+                api.fetchContainerById(parent_id).then(data => {
+                    setCurrentContainer(data)
+                    navigate(`/edit/item/${cardIndex}`)
+                })
+                }}/></motion.div>}
     </motion.div>
 }
 
