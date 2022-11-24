@@ -20,7 +20,7 @@ const Carousel = ({ i, currentContainer, addEvent, setHistory, setCurrentContain
             setCurrentIndex(prevState => prevState - 1)
         }
     }
-    return (<div className="carousel-container">
+    return (<motion.div layout className="carousel-container" initial={{opacity: 0, translateY: -50}} animate={{opacity: 1, translateY:0}} transition={{duration: 0.5}}>
         <div className="carousel-wrapper">
         {currentIndex > 0 &&
         <button onClick={prev} className="left-arrow">
@@ -47,7 +47,7 @@ const Carousel = ({ i, currentContainer, addEvent, setHistory, setCurrentContain
                     </button>}
         </div>
     </div>
-</div>
+</motion.div>
         
     )
 }
