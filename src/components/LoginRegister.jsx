@@ -61,5 +61,4 @@ return <div className="loginform">
       </div>
 }
 
-//comment
 export default LoginRegister
