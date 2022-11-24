@@ -27,7 +27,7 @@ const Carousel = ({ i, currentContainer, addEvent, setHistory, setCurrentContain
             &lt;
         </button>}
         <div className="carousel-content-wrapper">
-            <div className={`carousel-content show-${show}`} style={{ transform: `translateX(-${currentIndex * (100 / show)}%)`}} >
+            <div layout className={`carousel-content show-${show}`} style={{ transform: `translateX(-${currentIndex * (100 / show)}%)`}} >
                     <AnimatePresence mode="wait" >
                     {currentContainer.contains.map((element, index) => {
                         return <motion.div style={{ 'flex-grow': length > 3 ? 1 : 0 }}
