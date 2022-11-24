@@ -7,10 +7,10 @@ import { useNavigate } from 'react-router-dom';
 const LoginRegister = ({ usersArray, setUsersArray, addEvent })=>{
   const navigate = useNavigate();
 
-  const { user, setUser } = useContext(UserContext);
-  const [loading, setLoading] = useState(true);
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
+  const { user, setUser } = useContext(UserContext),
+    [loading, setLoading] = useState(true),
+    [username, setUsername] = useState(""),
+    [password, setPassword] = useState("")
  
 
 useEffect(() => {
@@ -24,17 +24,9 @@ useEffect(() => {
  }, [])
 
 
-const handleUsername = ((e) => {
-  setUsername(e.target.value)
-})
-
-const handlePassword = ((e) => {
-
-  setPassword(e.target.value)
-}) 
-
-
-const handleSubmit = (e)=>{
+  const handleUsername = ((e) => setUsername(e.target.value)),
+    handlePassword = ((e) => setPassword(e.target.value)),
+    handleSubmit = (e) => {
 
   e.preventDefault()
 
