@@ -68,7 +68,6 @@ const EditContainer = ({addEvent, currentContainer}) => {
             <input className="input" type="text" id="desc" placeholder="Description" value={descInput} name="desc" onChange={(e) => {setDesc(e.target.value)}}/>
             <label htmlFor="parent_id">Edit Parent ID:</label>
             <select name="parent_id" id="parent_id" onChange={(e) => {setParentId(e.target.value); console.log(e.target.value)}}>
-                <option value={currentContainer.name}>No Change</option>
                 {directory.map(list => <option value={list._id}>{list.parent_name} / {list.name}</option>)}
             </select>
         </div>
